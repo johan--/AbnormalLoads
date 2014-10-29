@@ -5,9 +5,9 @@ module.exports = (dal) ->
       systemId: 'ObjectId'
       name: 'String'
       address: 'String'
-      phone: 'String'
+      phone: ['String']
       emailAddress: 'String'
-      authorityType: 'AuthorityType'
+      authorityType: 'String'
     options:
       collection: 'Authorities'
 
