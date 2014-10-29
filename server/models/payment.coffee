@@ -1,11 +1,13 @@
 module.exports = (dal) ->
   modelDefinition =
-    name: 'AuthorityType'
+    name: 'Payment'
     schemaDefinition:
       systemId: 'ObjectId'
-      authorityType: 'String'
+      invoices: [ObjectId]
+      customer: 'Customer'
+      value: 'String'
     options:
-      collection: 'AuthorityTypes'
+      collection: 'Payments'
 
   modelDefinition.schema = dal.schemaFactory modelDefinition
   model = dal.modelFactory modelDefinition
