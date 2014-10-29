@@ -1,13 +1,15 @@
 module.exports = (dal) ->
   modelDefinition =
-    name: 'Enquiry'
+    name: 'Authority'
     schemaDefinition:
       systemId: 'ObjectId'
-      date: 'Date'
-      #contact: ['Contact']
-      details: 'String'
+      name: 'String'
+      address: 'String'
+      phone: 'String'
+      emailAddress: 'String'
+      authorityType: 'AuthorityType'
     options:
-      collection: 'Enquiries'
+      collection: 'Authorities'
 
   modelDefinition.schema = dal.schemaFactory modelDefinition
   model = dal.modelFactory modelDefinition

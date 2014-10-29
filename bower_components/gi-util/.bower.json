@@ -1,0 +1,15 @@
+{
+  "name": "gi-util",
+  "version": "0.3.6",
+  "main": "./bin/gi-util.js",
+  "homepage": "https://github.com/GoIncremental/gi-util",
+  "_release": "0.3.6",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.3.6",
+    "commit": "6c1d3c7f518df18261da19b481d623a5da9acd42"
+  },
+  "_source": "git://github.com/GoIncremental/gi-util.git",
+  "_target": "0.3.6",
+  "_originalSource": "gi-util"
+}

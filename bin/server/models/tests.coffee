@@ -1,6 +1,6 @@
 module.exports = (dal) ->
   modelDefinition =
-    name: 'Contact'
+    name: 'Test'
     schemaDefinition:
       systemId: 'ObjectId'
       firstName: 'String'
@@ -18,7 +18,7 @@ module.exports = (dal) ->
         postcode: 'String'
         country: 'String'
     options:
-      collection: 'Contacts'
+      collection: 'Tests'
 
   modelDefinition.schema = dal.schemaFactory modelDefinition
   model = dal.modelFactory modelDefinition

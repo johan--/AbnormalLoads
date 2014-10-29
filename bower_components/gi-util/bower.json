@@ -1,0 +1,5 @@
+{
+  "name": "gi-util",
+  "version": "0.3.6",
+  "main": "./bin/gi-util.js"
+}

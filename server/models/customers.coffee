@@ -3,7 +3,15 @@ module.exports = (dal) ->
     name: 'Customer'
     schemaDefinition:
       systemId: 'ObjectId'
-      name: 'String'
+      haulierName: 'String'
+      haulierFAOContactName: 'String'
+      address: 'String'
+      tel: 'String'
+      fax: 'String'
+      license: 'String'
+      regNo: 'String'
+    options:
+      collection: 'Customers'
 
   modelDefinition.schema = dal.schemaFactory modelDefinition
   model = dal.modelFactory modelDefinition

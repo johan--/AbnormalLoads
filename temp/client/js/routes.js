@@ -7,6 +7,22 @@ angular.module('abnormalloads').config([
       templateUrl: '/views/customer.html',
       controller: 'customerController'
     })
+    .when('/loads', {
+      templateUrl: '/views/load.html',
+      controller: 'loadController'
+    })
+    .when('/jobs', {
+      templateUrl: '/views/job.html',
+      controller: 'jobController'
+    })
+    .when('/authorities', {
+      templateUrl: '/views/authorities.html',
+      controller: 'authorityController'
+    })
+    .when('/authorityTypes', {
+      templateUrl: '/views/authorityTypes.html',
+      controller: 'authorityTypesController'
+    })
     .otherwise({
       redirectTo: '/'
     });
