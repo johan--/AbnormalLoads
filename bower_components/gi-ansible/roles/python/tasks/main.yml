@@ -1,0 +1,9 @@
+---
+
+- name: Install Virtualenv
+  sudo: yes
+  apt: pkg=python-virtualenv state=installed
+
+- name: Install Supervisor
+  sudo: yes
+  apt: pkg=supervisor state=installed

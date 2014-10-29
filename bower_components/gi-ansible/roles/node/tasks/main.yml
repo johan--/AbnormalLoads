@@ -1,0 +1,50 @@
+---
+
+- name: install common packages needed for node development
+  sudo: yes
+  apt: pkg={{item}} state=installed
+  when: installed_node_version != node_version
+  with_items:
+    - g++
+    - curl
+    - libssl-dev
+    - apache2-utils
+    - git-core
+    - make
+
+- name: fetch node source code
+  command: wget http://nodejs.org/dist/{{node_version}}/node-{{node_version}}.tar.gz creates=node-{{node_version}}.tar.gz
+  when: installed_node_version != node_version
+
+- name: expand node source code
+  command: tar xzf node-{{node_version}}.tar.gz
+  when: installed_node_version != node_version
+
+- name: configure node
+  command: chdir=/home/{{ansible_user_id}}/node-{{node_version}} ./configure
+  when: installed_node_version != node_version
+
+- name: make node
+  command: chdir=/home/{{ansible_user_id}}/node-{{node_version}} make -j 3
+  when: installed_node_version != node_version
+
+- name: install node
+  command: chdir=/home/{{ansible_user_id}}/node-{{node_version}} make install
+  when: installed_node_version != node_version
+
+- name: clean node build directory
+  file: path=node-{{node_version}} state=absent
+  when: installed_node_version != node_version
+
+- name: clean node source file
+  file: path=node-{{node_version}}.tar.gz state=absent
+  when: installed_node_version != node_version
+  
+- name: npm install forever -g
+  npm:  name=forever global=yes
+
+- name: npm install bower -g
+  npm:  name=bower global=yes
+
+- name: npm install grunt-cli -g
+  npm: name=grunt-cli global=yes

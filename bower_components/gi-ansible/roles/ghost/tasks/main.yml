@@ -1,0 +1,63 @@
+- name: install unzip
+  sudo: yes
+  apt: pkg=unzip state=installed
+
+- name: install sqlite
+  sudo: yes
+  apt: pkg=sqlite state=installed
+
+- name: ensure current directory is present
+  file: path={{web_dir}}/{{app_name}}/current state=directory
+
+- name: ensure ghost directory is present
+  file: path={{web_dir}}/{{app_name}}/current/ghost state=directory
+
+- name: fetch ghost source 
+  command: chdir={{ web_dir }} wget https://ghost.org/zip/ghost-{{ghost_version}}.zip
+
+- name: expand ghost source 
+  sudo: yes
+  command: chdir={{web_dir}} unzip -uo ghost-{{ghost_version}}.zip -d {{web_dir}}/{{app_name}}/current/ghost
+
+- name: remove ghost zip
+  file: path={{web_dir}}/ghost-{{ghost_version}}.zip state=absent
+
+- name: install production ghost npm dependencies
+  npm: path={{web_dir}}/{{app_name}}/current/ghost production=yes
+
+- name: copy ghost config script
+  template: src=config.js dest={{web_dir}}/{{app_name}}/current/ghost/config.js
+
+- name: create conf folder
+  file: path={{web_dir}}/{{app_name}}/current/conf/ state=directory owner=deploy
+
+- name: create nginx site config
+  template: src=nginx.conf dest={{web_dir}}/{{app_name}}/current/conf/nginx.conf
+
+- name: link nginx site config
+  sudo: yes
+  file: src={{web_dir}}/{{app_name}}/current/conf/nginx.conf dest=/etc/nginx/sites-enabled/{{app_name}} state=link
+  notify:
+    - Restart nginx
+
+- name: give deploy ownership of installed files
+  sudo: yes
+  file: path={{web_dir}}/{{app_name}}/current/ state=directory owner=deploy group=deploy recurse=yes
+
+- name: copy init script
+  sudo: yes
+  template: src=ghost.init dest=/etc/init.d/ghost
+  notify:
+    - Restart ghost
+
+- name: define permissions on init script
+  sudo: yes
+  file: path=/etc/init.d/ghost mode=755
+
+- name: set init script to load on reboot (1 of 2)
+  sudo: yes
+  command: update-rc.d ghost defaults
+
+- name: set init script to load on reboot (2 of 2)
+  sudo: yes
+  command: update-rc.d ghost enable

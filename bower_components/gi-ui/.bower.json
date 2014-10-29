@@ -1,0 +1,38 @@
+{
+  "name": "gi-ui",
+  "version": "0.2.3",
+  "main": "./bin/gi-ui.js",
+  "devDependencies": {
+    "angular": "1.2.14",
+    "angular-resource": "1.2.14",
+    "angular-touch": "1.2.14",
+    "gi-util": "~0.3.5"
+  },
+  "dependencies": {
+    "blueimp-file-upload": "~8.9.0",
+    "jquery-ui": "~1.10.3",
+    "jquery": "~2.0.3"
+  },
+  "homepage": "https://github.com/GoIncremental/gi-ui",
+  "authors": [
+    "David Bochenski <David@Bochenski.co.uk>"
+  ],
+  "license": "Apache 2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0.2.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.2.3",
+    "commit": "c9c307ceedc1cba8bd9ce17c1f345ea0d72c9885"
+  },
+  "_source": "git://github.com/GoIncremental/gi-ui.git",
+  "_target": "0.2.3",
+  "_originalSource": "gi-ui"
+}

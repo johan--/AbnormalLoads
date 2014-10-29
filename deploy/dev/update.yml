@@ -1,0 +1,22 @@
+- hosts: '{{ lookup("env", "GI_HOST") }}'
+  user: '{{ lookup("env", "GI_USER") }}'
+  vars:
+    web_dir: '{{ lookup("env", "WEB_DIR") }}'
+    app_name: 'abnormalloads'
+    app_env: 'dev'
+    app_version: 'dev'
+    app_port: 8152
+    db_name: 'abnormalloads'
+    repl_set: 'dev'
+    db_port: 27017
+    db_host: 'localhost'
+    db_hosts: 'localhost:27017,localhost:27027'
+    server_address: 'dev.abloads.co.uk'
+    src_path: '{{ lookup("env", "SRC_PATH") }}'
+    use_ssl: false
+    nginx_base: /usr/local
+  roles:
+    - ../../../bower_components/gi-ansible/roles/helper
+    - ../../../bower_components/gi-ansible/roles/webapp
+    - ../../common/roles/upgradedb
+    - ../../common/roles/update

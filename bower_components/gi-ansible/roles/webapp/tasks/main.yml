@@ -1,0 +1,13 @@
+--- 
+
+- name: create site folder
+  file: path={{web_dir}}/{{app_name}}/ state=directory owner={{ansible_user_id}}
+
+- name: create log folder
+  file: path={{web_dir}}/{{app_name}}/log/ state=directory owner={{ansible_user_id}}
+
+- name: create src folder
+  file: path={{web_dir}}/{{app_name}}/src/ state=directory owner={{ansible_user_id}}
+
+- name: create ssl folder
+  file: path={{web_dir}}/{{app_name}}/ssl/ state=directory owner={{ansible_user_id}}

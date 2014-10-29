@@ -1,0 +1,3 @@
+- name: Install compass via gem
+  shell: executable=/bin/bash . $HOME/.rvm/scripts/rvm && gem install compass
+

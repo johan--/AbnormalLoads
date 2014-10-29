@@ -1,0 +1,6 @@
+---
+
+ubuntu_release: precise
+deploy_password: "{{ lookup('env','DEPLOY_PASSWORD') }}"
+# crypted password, generated on a Linux box using: echo 'import crypt,getpass; print crypt.crypt(getpass.getpass(), "$6$AC3bdCF7!@GFC")' | python -
+deploy_key: "{{ lookup('env','DEPLOY_KEY') }}"

@@ -1,0 +1,63 @@
+- name: create dev symlink to code
+  file: src={{src_path}} dest={{web_dir}}/{{app_name}}/src/{{app_version}} state=link
+  when: app_version == 'dev'
+
+- name: install {{app_name}} via git
+  git: repo=git@github.com:GB3/abnormalloads.git dest={{web_dir}}/{{app_name}}/src/{{app_version}} version={{app_version}}
+  when: app_version != 'dev'
+
+- name: create current symlink to {{app_version}}
+  file: src={{web_dir}}/{{app_name}}/src/{{app_version}} dest={{web_dir}}/{{app_name}}/current state=link
+
+- name: create conf folder
+  file: path={{web_dir}}/{{app_name}}/current/conf state=directory owner={{ansible_user_id}}
+
+- name: copy .env file
+  template: src=dot.env dest={{web_dir}}/{{app_name}}/current/conf/.env
+
+- name: create startup script
+  template: src=restart.sh dest={{web_dir}}/{{app_name}}/current/conf/restart.sh mode=700
+  when: app_env != 'dev' and app_env != 'test'
+
+- name: npm install dependencies
+  npm: path={{web_dir}}/{{app_name}}/current
+
+- name: bower install
+  shell: bower install chdir={{web_dir}}/{{app_name}}/current
+  when: app_env == 'dev' or app_env == 'test'
+
+- name: bower install --production
+  shell: bower install --production chdir={{web_dir}}/{{app_name}}/current
+  when: app_env != 'dev' and app_env != 'test'
+
+- name: grunt buildUat
+  shell: grunt buildUat chdir={{web_dir}}/{{app_name}}/current
+  when: app_env == 'uat'
+
+- name: grunt buildProd
+  shell: grunt buildProd chdir={{web_dir}}/{{app_name}}/current
+  when: app_env == 'prod'
+
+- name: create nginx site config
+  template: src=nginx.conf dest={{web_dir}}/{{app_name}}/current/conf/{{app_env}}-nginx.conf
+
+- name: link nginx site config
+  sudo: yes
+  file: src={{web_dir}}/{{app_name}}/current/conf/{{app_env}}-nginx.conf dest=/etc/nginx/sites-enabled/{{app_name}}-{{app_env}} state=link
+  when: ansible_distribution != "MacOSX"
+  notify:
+    - Restart nginx
+
+- name: link nginx site config
+  file: src={{web_dir}}/{{app_name}}/current/conf/{{app_env}}-nginx.conf dest={{nginx_base}}/etc/nginx/sites-enabled/{{app_name}}-{{app_env}} state=link
+  when: ansible_distribution == "MacOSX"
+
+- name: create named symlink to app for forever
+  file: src={{web_dir}}/{{app_name}}/current/bin/server/index.js dest={{web_dir}}/{{app_name}}/current/bin/{{app_name}}.js state=link
+  when: app_env != 'dev'
+
+- name: fire up site with forever
+  command: ./restart.sh chdir={{web_dir}}/{{app_name}}/current/bin
+  when: app_env != 'dev'
+  notify:
+    - Restart nginx

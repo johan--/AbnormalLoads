@@ -1,0 +1,7 @@
+- name: Install Python dev
+  sudo: yes
+  apt: pkg=python-dev state=installed
+
+- name: Install Pip
+  sudo: yes
+  apt: pkg=python-pip state=installed

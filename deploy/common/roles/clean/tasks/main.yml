@@ -1,0 +1,14 @@
+- name: install grunt-cli
+  npm:  name=grunt-cli global=yes
+
+- name: remove node_modules
+  file: path={{web_dir}}/{{app_name}}/src/{{app_version}}/node_modules state=absent
+
+- name: remove bower_components
+  file: path={{web_dir}}/{{app_name}}/src/{{app_version}}/bower_components state=absent
+
+- name: remove old code folder
+  file: path={{web_dir}}/{{app_name}}/src/{{app_version}} state=absent
+
+- name: remove current symlink
+  file: path={{web_dir}}/{{app_name}}/current state=absent

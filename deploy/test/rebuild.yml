@@ -1,0 +1,20 @@
+- hosts: dev
+  user: deploy
+  vars:
+    web_dir: '/home/deploy/sites'
+    app_name: 'abnormalloads'
+    app_env: 'test'
+    app_version: 'dev'
+    app_port: 8133
+    db_name: 'abnormalloads'
+    db_host: 'localhost'
+    server_address: 'test.abloads.co.uk'
+    src_path: '{{ lookup("env", "SRC_PATH") }}'
+    use_ssl: false
+  roles:
+    - ../../common/roles/clean
+    - ../../../bower_components/gi-ansible/roles/webapp
+    - ../../../bower_components/gi-ansible/roles/helper
+    - ../../common/roles/restoredb
+    - ../../common/roles/upgradedb
+    - ../../common/roles/update

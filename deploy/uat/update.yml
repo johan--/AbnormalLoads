@@ -1,0 +1,20 @@
+---
+- hosts: li-uat-01
+  user: deploy
+  vars:
+    web_dir: '/home/deploy/sites'
+    app_name: 'abnormalloads'
+    app_version: 'uat'
+    app_env: 'uat'
+    app_port: 8152
+    db_name: 'abnormalloads_uat'
+    db_host: "li-mongo-01.goincremental.com"
+    db_hosts: "li-mongo-01.goincremental.com:27027,li-mongo-02.goincremental:27027"
+    db_port: 27027
+    repl_set: "uat"
+    server_address: 'uat.abnormalloads.goincremental.com'
+    use_ssl: false
+  roles:
+    - ../../../bower_components/gi-ansible/roles/helper
+    - ../../common/roles/upgradedb
+    - ../../common/roles/update

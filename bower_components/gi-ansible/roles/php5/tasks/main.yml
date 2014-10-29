@@ -1,0 +1,39 @@
+---
+
+- name: Install php5.4 repo
+  apt_repository: repo=ppa:ondrej/php5 state=present
+  register: last_result
+  sudo: yes
+
+- name: Update APT package cache
+  apt: update_cache=yes
+  when: last_result.changed
+  sudo: yes
+
+- name: install php5
+  sudo: yes
+  apt: pkg={{item}} state=installed
+  with_items:
+    - php5-common
+    - php5-mysql
+    - php5-xmlrpc
+    - php5-cgi
+    - php5-curl
+    - php5-gd
+    - php5-cli
+    - php5-fpm
+    - php-apc
+    - php5-dev
+    - php5-mcrypt
+
+# - name: php exact filename matching
+#   sudo: yes
+#   lineinfile: dest=/etc/php5/fpm/php.ini regexp=";cgi.fix_pathinfo" line="cgi.fix_pathinfo=1" state=present
+
+# - name: php listen on socket not port
+#   sudo: yes
+#   lineinfile: dest=/etc/php5/fpm/pool.d/www.conf regexp="listen = 127.0.0.1:9000" line="listen = /var/run/php5-fpm.sock" state=present
+
+- name: Restart php5-fpm
+  sudo: yes
+  service: name=php5-fpm state=restarted

@@ -1,0 +1,1 @@
+angular.module 'gi.security', ['ngResource', 'gi.util', 'gi.ui']

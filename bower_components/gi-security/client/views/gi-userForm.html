@@ -1,0 +1,71 @@
+<div class="well form">
+  <h4>Profile</h4>
+  <div class="form-group">
+    <label>First Name:</label>
+    <input  type="text" name="name" class="form-control" 
+            ng-model="user.firstName" ng-change="checkForChanges()"/>
+  </div>
+  <div class="form-group">
+    <label>Surname:</label>
+    <input  type="text" name="lastName" class="form-control" 
+            ng-model="user.lastName" ng-change="checkForChanges()"/>
+  </div>
+  <div class="form-group">
+    <label>Email:</label>
+    <input  type="text" name="email" class="form-control" 
+            ng-model="user.email" ng-change="checkForChanges()" />
+  </div>
+  <div class="form-group">
+    <label>Password:</label>
+    <input  type="password" name="password" class="form-control" 
+            ng-model="user.password" ng-change="checkForChanges()" />
+  </div>
+  <h4>Roles</h4>
+  <div class="form-group">
+    <h4>Assigned Roles</h4>
+    <div class="col-md-12" ng-repeat="role in userRoles">
+      <label>{{role.name}}</label>
+      <button class="btn btn-danger"
+              ng-click="removeFromRole(role)" >
+        <span class="glyphicon glyphicon-trash white"></span>
+      </button>
+    </div>
+    <div ng-if="notUserRoles.length > 0">
+      <h4>Available Roles</h4>
+      <select class="form-control"
+              ng-model="selectedRole" 
+              ng-options="role.name for role in notUserRoles">
+      </select>
+      <button ng-click="addToRole(selectedRole)" 
+              class="btn btn-primary">Assign</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <button ng-disabled="!unsavedChanges" 
+            class="btn btn-primary" 
+            ng-click="save()">
+        {{submitText}}
+    </button>
+    <button ng-show="showDelete" 
+            class="btn btn-danger" 
+            ng-click="confirmDelete()" >
+      <span class="glyphicon glyphicon-trash white"></span>
+    </button>
+  </div>
+</div>
+
+<gi-modal visible="showDeleteModal"
+        title="Please Confirm Delete Action">
+  <div class="body">
+    <p>Delete a user - are you sure?</p>
+    <p>Please continue only if you are 100% 
+      you understand what you're deleting.  
+      There is no way to retrieve the data after this point.</p>
+  </div>
+  <div class="footer">
+    <button ng-click="deleteUser()" \
+            class="btn btn-danger">
+      Delete It!
+    </button>
+  </div>
+</gi-modal>

@@ -1,0 +1,8 @@
+---
+
+- name: install s3cmd
+  sudo: yes
+  apt: pkg=s3cmd state=installed
+
+- name: install s3cmd config
+  template: src=.s3cfg dest=/home/{{ ansible_user_id }}/.s3cfg

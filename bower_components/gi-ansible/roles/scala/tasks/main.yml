@@ -1,0 +1,17 @@
+--- 
+
+- name: Install java
+  sudo: yes
+  apt: pkg=openjdk-7-jdk  state=installed
+
+- name: download SBT
+  command: wget http://scalasbt.artifactoryonline.com/scalasbt/sbt-native-packages/org/scala-sbt/sbt/0.12.3/sbt.deb
+  when: installed_sbt_version != '0.12.3'
+
+- name: install SBT
+  sudo: yes
+  command: dpkg -i sbt.deb
+  when: installed_sbt_version != '0.12.3'
+
+- name: remove sbt deb package file
+  file: path=sbt.deb state=absent

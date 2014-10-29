@@ -1,0 +1,35 @@
+---
+
+- name: Install python-software-properties (a dependency of apt_repository module)
+  apt: pkg=python-software-properties
+  sudo: yes
+
+- name: Install Nginx ppa stable repo
+  apt_repository: repo=ppa:nginx/stable state=present
+  register: last_result
+  sudo: yes
+
+- name: Update APT package cache
+  apt: update_cache=yes
+  when: last_result.changed
+  sudo: yes
+
+- name: Install nginx
+  apt: pkg=nginx state=installed
+  sudo: yes
+
+- name: remove default nginx site
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  sudo: yes
+
+- name: write nginx.conf
+  copy: src=nginx.conf  dest=/etc/nginx/nginx.conf  
+  sudo: yes
+  
+- name: open port 80 (HTTP)
+  sudo: yes
+  command: ufw allow 80
+
+- name: open port 443 (TLS/SSL)
+  sudo: yes
+  command: ufw allow 443

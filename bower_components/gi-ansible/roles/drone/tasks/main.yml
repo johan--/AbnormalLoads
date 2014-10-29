@@ -1,0 +1,15 @@
+---
+
+- name: fetch drone deb
+  command: wget http://downloads.drone.io/latest/drone.deb
+
+- name: install drone
+  sudo: yes
+  command: dpkg -i drone.deb
+
+- name: Restart drone
+  sudo: yes
+  service: name=drone state=restarted
+
+- name: remove drone deb
+  file: path=drone.deb state=absent

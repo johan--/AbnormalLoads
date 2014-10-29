@@ -1,0 +1,26 @@
+--- 
+
+- name: Register it in fstab
+  sudo: yes
+  lineinfile: dest=/etc/fstab regexp=^/swapfile line="/swapfile       none    swap    sw      0       0"
+  register: last_result
+
+- name: Create swap file
+  sudo: yes
+  command: dd if=/dev/zero of=/swapfile bs=1024 count=512k
+  when: last_result.changed
+
+- name: Create swap area
+  sudo: yes
+  command: mkswap /swapfile
+  when: last_result.changed
+
+- name: Activate swap file
+  sudo: yes
+  command: swapon /swapfile
+  when: last_result.changed
+
+- name: set correct permissions on swapfile
+  sudo: yes
+  file: path=/swapfile mode=0600 owner=root group=root
+  when: last_result.changed

@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <ul class="nav nav-pills nav-stacked">
+        <li ng-class="{active: currentView == 'list' }">
+          <a ng-click="show('list')">All Users</a>
+        </li>
+        <li ng-class="{active: currentView == 'form' }">
+          <a ng-click="show('form')">New User</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-10">
+      <div>
+        <div ng-show="selectedUser" >
+          <div class="col-md-4">
+            <h4>Users</h4>
+            <ul class="nav nav-pills nav-stacked" ng-repeat="user in users" >
+              <li ng-class="{active: user._id == selectedUser._id}" >
+                <a 
+                 ng-click="selectUser(user)">{{user.firstName}}</a>
+              </li>
+            </ul>
+          </div>
+          <div ng-show="currentView == 'list'" class="col-md-8">
+            <user-form user="selectedUser" title="User Details" submit-text="Save Changes" submit="saveUser(user)" destroy="deleteUser(user)"></user-form>
+          </div>
+          <div ng-show="currentView == 'form'" class="col-md-8">
+            <user-form title="New User" user="newUser" submit-text="Create User" submit="saveUser(user)"></user-form>
+          </div>
+        </div>      
+        <div ng-hide="selectedUser">
+          <div class="col-md-4">
+            <h4>Users</h4>
+            No Users found for this organisation.
+            You can create one by entering the details on this page.
+          </div>
+          <div class="col-md-4">
+            <h4>Create New User</h4>
+            <user-form title="New User" user="newUser" submit-text="Create User" submit="saveUser(user)"></user-form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

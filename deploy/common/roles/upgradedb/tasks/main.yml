@@ -1,0 +1,8 @@
+- name: copy db upgrade script
+  template: src=upgrade.js dest={{web_dir}}/{{app_name}}/upgrade.js
+
+- name: run db upgrade script
+  command: mongo -host {{repl_set}}/{{db_host}}:{{db_port}} {{db_name}} upgrade.js chdir={{web_dir}}/{{app_name}}
+
+- name: remove db upgrade script
+  file: path={{web_dir}}/{{app_name}}/upgrade.js state=absent

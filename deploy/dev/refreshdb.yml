@@ -1,0 +1,14 @@
+- hosts: dev
+  user: deploy
+  vars:
+    web_dir: '/home/deploy/sites'
+    app_name: 'abnormalloads'
+    app_env: 'dev'
+    app_version: 'dev'
+    app_port: 8312
+    db_name: 'abnormalloads'
+    db_host: 'localhost'
+    server_address: 'dev.abloads.co.uk'
+  roles:
+    - ../../common/roles/restoredb
+    - ../../common/roles/upgradedb

@@ -1,0 +1,21 @@
+---
+- include: touchdbs.yml
+- hosts: prod
+  user: deploy
+  vars:
+    web_dir: '/home/deploy/sites'
+    app_name: 'abnormalloads'
+    app_version: 'v0.1.2'
+    app_env: 'prod'
+    app_port: 8152
+    db_name: 'abnormalloads_prod'
+    db_host: "{{hostvars['do-mongo-01']['ansible_eth1']['ipv4']['address']}}"
+    server_address: 'beta.abloads.co.uk'
+    use_ssl: true
+  roles:
+    - ../../common/roles/clean
+    - ../../../bower_components/gi-ansible/roles/helper
+    - ../../../bower_components/gi-ansible/roles/webapp
+    - ../../../bower_components/gi-ansible/roles/ssl
+    - ../../common/roles/upgradedb
+    - ../../common/roles/update

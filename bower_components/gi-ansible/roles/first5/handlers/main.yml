@@ -1,0 +1,7 @@
+---
+
+- name: Enable ufw
+  command: ufw --force enable
+
+- name: Restart ssh
+  service: name=ssh state=restarted
