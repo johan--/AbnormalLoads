@@ -10,6 +10,7 @@ module.exports = (dal) ->
       fax: 'String'
       license: 'String'
       regNo: 'String'
+      pricingLevel: 'ObjectId'
     options:
       collection: 'Customers'
 
