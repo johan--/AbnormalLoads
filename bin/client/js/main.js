@@ -48,13 +48,22 @@ require({
     'controllers/main': {
       deps: ['app']
     },
+    'controllers/list': {
+      deps: ['app', 'services/tests']
+    },
+    'controllers/test': {
+      deps: ['app', 'services/tests']
+    },
     'controllers/customer': {
       deps: ['app', 'services/customers']
     },
     'services/customers': {
       deps: ['app']
+    },
+    'services/tests': {
+      deps: ['app']
     }
   }
-}, ['require', 'controllers/main', 'controllers/customer', 'views', 'routes'], function(require) {
+}, ['require', 'controllers/main', 'controllers/customer', 'controllers/list', 'controllers/test', 'views', 'routes'], function(require) {
   return require(['bootstrap']);
 });

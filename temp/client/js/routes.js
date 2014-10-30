@@ -23,6 +23,14 @@ angular.module('abnormalloads').config([
       templateUrl: '/views/authorityTypes.html',
       controller: 'authorityTypesController'
     })
+    .when('/tests', {
+      templateUrl: '/views/list.html',
+      controller: 'listController'
+    })
+    .when('/tests/:id', {
+      templateUrl: '/views/test.html',
+      controller: 'testController'
+    })
     .otherwise({
       redirectTo: '/'
     });
