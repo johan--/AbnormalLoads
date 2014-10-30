@@ -16,6 +16,7 @@ module.exports = (dal) ->
       numberOfLoads: 'Integer'
       return: 'Bool'
       reg: 'String'
+      numberOfComms: 'Number'
       history: ['History']
     options:
       collection: 'Jobs'

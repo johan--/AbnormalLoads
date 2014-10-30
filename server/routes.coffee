@@ -5,9 +5,6 @@ configure = (app, dir) ->
   # json/api routes
   #
 
-  gi.common.rest.routeResource 'enquiries'
-  , app, app.middleware.publicAction, app.controllers.enquiry
-
   gi.common.rest.routeResource 'tests'
   , app, app.middleware.publicAction, app.controllers.test
 
