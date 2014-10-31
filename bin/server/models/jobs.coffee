@@ -4,7 +4,7 @@ module.exports = (dal) ->
     schemaDefinition:
       systemId: 'ObjectId'
       haulier: 'ObjectId'
-      authorities: ['Authority']
+      authorities: ['ObjectId']
       ref: 'String'
       dateFrom: 'Date'
       dateTo: 'Date'
@@ -12,12 +12,15 @@ module.exports = (dal) ->
       addressTo: 'String'
       route: 'String'
       vehicle: 'String'
-      load: 'Load'
-      numberOfLoads: 'Integer'
-      return: 'Bool'
+      #load: 'Load'
+      numberOfLoads: 'Number'
+      return: 'Boolean'
       reg: 'String'
       numberOfComms: 'Number'
-      history: ['History']
+      #history: ['History']
+      price: 'Number'
+      vat: 'Number'
+      vatRate: 'Number'
     options:
       collection: 'Jobs'
 

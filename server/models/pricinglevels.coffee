@@ -3,7 +3,7 @@ module.exports = (dal) ->
     name: 'PricingLevel'
     schemaDefinition:
       systemId: 'ObjectId'
-      min: 'String'
+      min: 'Number'
       max: 'Number'
       value: 'Number'
       fixedPrice: 'Number'

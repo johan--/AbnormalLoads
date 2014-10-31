@@ -6,10 +6,12 @@ module.exports = (dal) ->
       haulierName: 'String'
       haulierFAOContactName: 'String'
       address: 'String'
+      postcode: 'String'
       tel: 'String'
       fax: 'String'
       license: 'String'
       regNo: 'String'
+      #pricingLevel: ['PricingLevel']
     options:
       collection: 'Customers'
 

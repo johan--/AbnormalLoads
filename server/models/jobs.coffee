@@ -13,11 +13,14 @@ module.exports = (dal) ->
       route: 'String'
       vehicle: 'String'
       load: 'Load'
-      numberOfLoads: 'Integer'
-      return: 'Bool'
+      numberOfLoads: 'Number'
+      return: 'Boolean'
       reg: 'String'
       numberOfComms: 'Number'
       history: ['History']
+      price: 'Number'
+      vat: 'Number'
+      vatRate: 'Number'
     options:
       collection: 'Jobs'
 

@@ -5,6 +5,7 @@ module.exports = (dal) ->
       systemId: 'ObjectId'
       name: 'String'
       address: 'String'
+      postcode: 'String'
       phoneOffice: 'String'
       phoneMobile: 'String'
       phoneOther: 'String'

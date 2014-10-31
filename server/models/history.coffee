@@ -1,14 +1,13 @@
 module.exports = (dal) ->
   modelDefinition =
-    name: 'Invoice'
+    name: 'History'
     schemaDefinition:
       systemId: 'ObjectId'
-      jobs: ['ObjectId']
-      amount: 'Number'
-      vat: 'Number'
-      vatRate: 'Number'
+      date: 'Date'
+      notes: 'String'
+      user: 'String'
     options:
-      collection: 'Invoices'
+      collection: 'History'
 
   modelDefinition.schema = dal.schemaFactory modelDefinition
   model = dal.modelFactory modelDefinition

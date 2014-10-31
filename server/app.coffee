@@ -70,7 +70,6 @@ app.configure ->
 
   #configure the local routes
   routes.configure app, dir
-  console.log "Done it 2"
 
 app.configure 'development', ->
   app.use express.errorHandler({ dumpExceptions: true, showStack: true })
