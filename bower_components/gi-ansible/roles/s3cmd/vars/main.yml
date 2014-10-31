@@ -1,4 +1,0 @@
----
-
-aws_access: "{{ lookup('env','AWSAccessKeyId') }}"
-aws_secret: "{{ lookup('env','AWSSecretKey') }}"

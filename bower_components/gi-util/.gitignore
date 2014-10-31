@@ -1,9 +1,0 @@
-node_modules/
-bower_modules/
-bin/
-!bin/gi-util.js
-coverage/
-temp/
-npm-debug.log
-.DS_Store
-

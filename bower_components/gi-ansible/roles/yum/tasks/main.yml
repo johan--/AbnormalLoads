@@ -1,5 +1,0 @@
---- 
-
-- name: Install yum
-  sudo: yes
-  apt: pkg=yum  state=installed

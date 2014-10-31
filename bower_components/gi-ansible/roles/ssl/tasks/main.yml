@@ -1,5 +1,0 @@
-- name: Copy production SSL certificate chain
-  copy: src={{server_address}}.chained.crt dest={{web_dir}}/{{app_name}}/ssl/{{server_address}}.chained.crt
-
-- name: Copy production SSL key
-  copy: src={{server_address}}.key dest={{web_dir}}/{{app_name}}/ssl/{{server_address}}.key

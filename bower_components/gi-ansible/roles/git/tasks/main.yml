@@ -1,3 +1,0 @@
-- name: Install Git
-  sudo: yes
-  apt: pkg=git-core state=installed

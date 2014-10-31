@@ -1,6 +1,0 @@
-.env
-.vagrant/
-.DS_Store
-ssl.crt
-ssl.key
-*.cer

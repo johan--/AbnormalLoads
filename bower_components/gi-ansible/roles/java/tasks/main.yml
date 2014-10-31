@@ -1,5 +1,0 @@
---- 
-
-- name: Install java
-  sudo: yes
-  apt: pkg=openjdk-7-jdk  state=installed
