@@ -12,7 +12,7 @@ module.exports = (dal) ->
       addressTo: 'String'
       route: 'String'
       vehicle: 'String'
-      load: 'Load'
+      load: 'ObjectId'
       numberOfLoads: 'Number'
       return: 'Boolean'
       reg: 'String'
