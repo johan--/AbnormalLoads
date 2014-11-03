@@ -4,6 +4,10 @@ angular.module('abnormalloads').config([
       templateUrl: '/views/home.html'
     })
     .when('/customers', {
+      templateUrl: '/views/customerlist.html',
+      controller: 'customerlistController'
+    })
+    .when('/customers/:id', {
       templateUrl: '/views/customer.html',
       controller: 'customerController'
     })

@@ -1,24 +1,28 @@
-angular.module("abnormalloads").controller("customerController", ["$scope", "Customers", function($scope, Customers) {
-  $scope.message = "hello javascript";
+angular.module("abnormalloads").controller("customerController", ["$scope", "Customers", "$routeParams", function($scope, Customers, $routeParams) {
   $scope.customer = {};
 
-  Customers.all().then(function(data) {
-    $scope.customers = data;
+  Customers.get($routeParams.id).then(function(data) {
+    alert('hello!')
+    $scope.data = data;
   });
 
-  $scope.addCustomer = function() {
-      Customers.save($scope.customer).then(function() {
-        $scope.customer = {};
-      });
+//  Customers.all().then(function(data) {
+//  $scope.customers = data;
+//  });
 
-  };
+//  $scope.addCustomer = function() {
+//      Customers.save($scope.customer).then(function() {
+//        $scope.customer = {};
+//      });
 
-  $scope.deleteCustomer = function(rec) {
-    Customers.destroy(rec._id);
-  };
+//  };
 
-  $scope.selectCustomer = function(rec) {
-    $scope.customer = rec;
-  };
+//  $scope.deleteCustomer = function(rec) {
+//    Customers.destroy(rec._id);
+//  };
+
+//  $scope.selectCustomer = function(rec) {
+//    $scope.customer = rec;
+//  };
 
 }]) ;
