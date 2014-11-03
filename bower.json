@@ -22,6 +22,6 @@
     "angular-bootstrap": "~0.10.0"
   },
   "devDependencies": {
-    "gi-ansible": "git@github.com:GoIncremental/gi-ansible.git"
+    "gi-ansible": "https://github.com/GoIncremental/gi-ansible.git"
   }
 }
