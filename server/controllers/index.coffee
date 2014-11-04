@@ -6,7 +6,7 @@ module.exports = (app) ->
   customer: ccf app.models.customers
   test: ccf app.models.tests
   job: ccf app.models.jobs
-  invoices: ccf app.models.invoices
-  authorities: ccf app.models.authorities
-  loads: ccf app.models.loads
+  invoice: ccf app.models.invoices
+  authority: ccf app.models.authorities
+  load: ccf app.models.loads
   payment: ccf app.models.payment

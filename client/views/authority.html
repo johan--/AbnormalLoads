@@ -1,0 +1,31 @@
+<div class="form-horizontal">
+  <div class="panel panel-default">
+    <div class="panel-heading">Authority Details</div>
+    <div class="panel-body">
+
+        <label class="control-label">Authority Name:</label>
+        <input type="text" class="form-control" ng-model="data.name" ng-required="true" />
+        <label class="control-label">Address:</label>
+        <input type="text" class="form-control" ng-model="data.address" ng-required="true" />
+        <label class="control-label">Postcode:</label>
+        <input type="text" class="form-control" ng-model="data.postcode" ng-required="true" />
+        <label class="control-label">Phone (Office):</label>
+        <input type="text" class="form-control" ng-model="data.phoneOffice" ng-required="true" />
+        <label class="control-label">Phone (Mobile):</label>
+        <input type="text" class="form-control" ng-model="data.phoneMobile" ng-required="true" />
+        <label class="control-label">Phone (Other):</label>
+        <input type="text" class="form-control" ng-model="data.phoneOther" ng-required="true" />
+        <label class="control-label">Email Address:</label>
+        <input type="text" class="form-control" ng-model="data.emailAddress" ng-required="true" />
+        <label class="control-label">Authority Type:</label><br>
+        <input type="radio" name="authorityType" value="Council" ng-model="data.authorityType">Council<br>
+        <input type="radio" name="authorityType" value="Police" ng-model="data.authorityType">Police<br>
+        <input type="radio" name="authorityType" value="Other" ng-model="data.authorityType">Other<br>
+        </br>
+        <button class="btn btn-primary" ng-click="saveAuthority()">Save</button>
+        <button class="btn btn-primary" ng-click="deleteAuthority()">Delete</button>
+    </div>
+  </div>
+
+</p>
+<a href="/list/authorities">Back To List Of Customers</a>

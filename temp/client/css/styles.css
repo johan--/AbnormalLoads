@@ -6527,6 +6527,7 @@ body {
   font-size: 1.25em;
 }
 #footer {
+  display: none;
   height: 100px;
   background-color: #000;
 }
@@ -6582,7 +6583,7 @@ body {
   margin: 0 auto -100px;
   /* Pad bottom by footer height */
 
-  padding: 0 0 100px;
+  padding: 50px;
 }
 /* Set the fixed height of the footer here */
 #footer {

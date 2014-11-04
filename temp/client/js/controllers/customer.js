@@ -1,28 +1,33 @@
-angular.module("abnormalloads").controller("customerController", ["$scope", "Customers", "$routeParams", function($scope, Customers, $routeParams) {
-  $scope.customer = {};
+angular.module("abnormalloads").controller("customerController", ["$location", "$scope", "Customers", "$routeParams", function($location, $scope, Customers, $routeParams) {
 
-  Customers.get($routeParams.id).then(function(data) {
-    alert('hello!')
-    $scope.data = data;
-  });
+  if($routeParams.id=="add") {
+    //Add new
+  } else {
+    //Id passed in, grab it
+    Customers.get($routeParams.id).then(function(data) {
+      $scope.data = data;
+    });
+  }
 
 //  Customers.all().then(function(data) {
 //  $scope.customers = data;
 //  });
 
-//  $scope.addCustomer = function() {
-//      Customers.save($scope.customer).then(function() {
-//        $scope.customer = {};
-//      });
+  $scope.addPricingLevel = function(rec) {
+      //var newPriceLevel = new pricingLevel();
 
-//  };
+      //$scope.data.pricingLevel.push(new PricingLevel(rec.min, rec.max, rec.value, rec.fixedPrice));
+  }
 
-//  $scope.deleteCustomer = function(rec) {
-//    Customers.destroy(rec._id);
-//  };
+  $scope.saveCustomer = function() {
+      Customers.save($scope.data).then(function() {
+        $location.path("/list/customers");
+      });
+  };
 
-//  $scope.selectCustomer = function(rec) {
-//    $scope.customer = rec;
-//  };
+  $scope.deleteCustomer = function() {
+    Customers.destroy($scope.data._id);
+    $location.path("/list/customers");
+  };
 
 }]) ;

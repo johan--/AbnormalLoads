@@ -19,10 +19,6 @@ angular.module('abnormalloads').config([
       templateUrl: '/views/job.html',
       controller: 'jobController'
     })
-    .when('/authorities', {
-      templateUrl: '/views/authorities.html',
-      controller: 'authorityController'
-    })
     .when('/authorityTypes', {
       templateUrl: '/views/authorityTypes.html',
       controller: 'authorityTypesController'
@@ -31,10 +27,35 @@ angular.module('abnormalloads').config([
       templateUrl: '/views/list.html',
       controller: 'listController'
     })
+    .when('/list/:type', {
+      templateUrl: '/views/list.html',
+      controller: 'listController'
+    })
     .when('/tests/:id', {
       templateUrl: '/views/test.html',
       controller: 'testController'
     })
+    .when('/customers/add', {
+      templateUrl: '/views/test.html',
+      controller: 'testController'
+    })
+    .when('/authorities/add', {
+      templateUrl: '/views/authority.html',
+      controller: 'authorityController'
+    })
+    .when('/authorities/:id', {
+      templateUrl: '/views/authority.html',
+      controller: 'authorityController'
+    })
+    .when('/loads/add', {
+      templateUrl: '/views/load.html',
+      controller: 'loadController'
+    })
+    .when('/authorities/add', {
+      templateUrl: '/views/authority.html',
+      controller: 'authorityController'
+    })
+
     .otherwise({
       redirectTo: '/'
     });
