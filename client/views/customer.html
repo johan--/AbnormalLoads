@@ -34,43 +34,46 @@
             <th>Max</th>
             <th>Value</th>
             <th>Fixed Price</th>
+            <th></th>
           </tr>
         </thead>
-        <tbody>
-          <div ng-switch="data.pricingLevel.length">
-            <div ng-switch-when=0>
-              <tr>
-                <td>
-                  No Data To Display
-                </td>
-                <td>
-                  -
-                </td>
-                <td>
-                  -
-                </td>
-                <td>
-                  -
-                </td>
-              </tr>
-            </div>
+        <tbody id="pricinglevels">
           <tr ng-repeat="a in data.pricingLevel">
             <td>
-              <input type="text" class="form-control" ng-model="a.min">
+              {{ a.min }}
             </td>
             <td>
-              <input type="text" class="form-control" ng-model="a.max">
+              {{ a.max }}
             </td>
             <td>
-              <input type="text" class="form-control" ng-model="a.value">
+              {{ a.value }}
             </td>
             <td>
-              <input type="text" class="form-control" ng-model="a.fixedPrice">
+              {{ a.fixedPrice }}
+            </td>
+            <td>
+              <a ng-click="deletePricingLevel(a.Id)">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input id="pricinglevel_min" type="text" class="form-control" ng-model="a.min">
+            </td>
+            <td>
+              <input id="pricinglevel_max" type="text" class="form-control" ng-model="a.max">
+            </td>
+            <td>
+              <input id="pricinglevel_value" type="text" class="form-control" ng-model="a.value">
+            </td>
+            <td>
+              <input id="pricinglevel_fixedprice" type="text" class="form-control" ng-model="a.fixedPrice">
+            </td>
+            <td>
+              <button class="btn btn-primary" ng-click="addPricingLevel()">Add Pricing Level</button>
             </td>
           </tr>
         </tbody>
       </table>
-      <button class="btn btn-primary" ng-click="addPricingLevel()">Add Pricing Level</button>
 
     </div>
 

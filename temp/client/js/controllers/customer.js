@@ -9,20 +9,45 @@ angular.module("abnormalloads").controller("customerController", ["$location", "
     });
   }
 
-//  Customers.all().then(function(data) {
-//  $scope.customers = data;
-//  });
+  $scope.addPricingLevel = function() {
+      var min = $("#pricinglevel_min").val();
+      var max = $("#pricinglevel_max").val();
+      var value = $("#pricinglevel_value").val();
+      var fixedprice = $("#pricinglevel_fixedprice").val();
 
-  $scope.addPricingLevel = function(rec) {
-      //var newPriceLevel = new pricingLevel();
+      var pricinglevel = { min: min, max: max, value: value, fixedPrice: fixedprice };
 
-      //$scope.data.pricingLevel.push(new PricingLevel(rec.min, rec.max, rec.value, rec.fixedPrice));
+      //Double check our pricing rule
+      if(!$.isNumeric(min) || !$.isNumeric(max) || !$.isNumeric(value) || !$.isNumeric(fixedprice)) {
+        alert('The Pricing Level fields must all be numeric.');
+        return;
+      }
+
+      if(min>=max || min == "" || max == "" || value == "" || fixedprice == "") {
+        alert('Pricing Level validation failed.');
+        return;
+      }
+
+      //If the user hasn't filled in any fields yet, this will be null
+      if($scope.data == null) $scope.data = { pricingLevel: [] };
+
+      //And so will this
+      if(!$scope.data.pricingLevel) $scope.data.pricingLevel = [];
+
+      //Add it
+      $scope.data.pricingLevel.push(pricinglevel);
+
+      $("#pricinglevel_min").val("");
+      $("#pricinglevel_max").val("");
+      $("#pricinglevel_value").val("");
+      $("#pricinglevel_fixedprice").val("");
+
   }
 
   $scope.saveCustomer = function() {
     if($(".ng-invalid") && $(".ng-invalid").length>0) {
       alert('You must complete all fields before you can save.')
-    } else if($scope.data.pricingLevel.length<1) {
+    } else if(!$scope.data.pricingLevel || $scope.data.pricingLevel.length<1) {
       alert('You must add at least one pricing level before you can save.')
     } else {
       Customers.save($scope.data).then(function() {
