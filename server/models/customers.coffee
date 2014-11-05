@@ -9,6 +9,7 @@ module.exports = (dal) ->
       postcode: 'String'
       tel: 'String'
       fax: 'String'
+      emailAddress: 'String'
       license: 'String'
       regNo: 'String'
       pricingLevel: ['PricingLevel']

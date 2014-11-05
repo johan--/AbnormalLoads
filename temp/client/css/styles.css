@@ -6649,3 +6649,9 @@ hr {
   background-repeat: no-repeat;
   margin: 60px auto;
 }
+.ng-invalid {
+  border: 1px solid red;
+}
+input[type=radio] {
+  margin-left: 10px !important;
+}

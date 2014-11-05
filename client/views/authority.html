@@ -16,11 +16,11 @@
         <label class="control-label">Phone (Other):</label>
         <input type="text" class="form-control" ng-model="data.phoneOther" ng-required="true" />
         <label class="control-label">Email Address:</label>
-        <input type="text" class="form-control" ng-model="data.emailAddress" ng-required="true" />
+        <input type="email" class="form-control" ng-model="data.emailAddress" ng-required="true" />
         <label class="control-label">Authority Type:</label><br>
-        <input type="radio" name="authorityType" value="Council" ng-model="data.authorityType">Council<br>
-        <input type="radio" name="authorityType" value="Police" ng-model="data.authorityType">Police<br>
-        <input type="radio" name="authorityType" value="Other" ng-model="data.authorityType">Other<br>
+        <label class="control-label">Council</label><input type="radio" name="authorityType" value="Council" ng-model="data.authorityType"><br>
+        <label class="control-label">Police</label><input type="radio" name="authorityType" value="Police" ng-model="data.authorityType"><br>
+        <label class="control-label">Other</label><input type="radio" name="authorityType" value="Other" ng-model="data.authorityType"><br>
         </br>
         <button class="btn btn-primary" ng-click="saveAuthority()">Save</button>
         <button class="btn btn-primary" ng-click="deleteAuthority()">Delete</button>

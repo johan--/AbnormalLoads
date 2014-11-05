@@ -15,6 +15,14 @@ angular.module('abnormalloads').config([
       templateUrl: '/views/load.html',
       controller: 'loadController'
     })
+    .when('/loads/:id', {
+      templateUrl: '/views/load.html',
+      controller: 'loadController'
+    })
+    .when('/loads/add', {
+      templateUrl: '/views/load.html',
+      controller: 'loadController'
+    })
     .when('/jobs', {
       templateUrl: '/views/job.html',
       controller: 'jobController'
