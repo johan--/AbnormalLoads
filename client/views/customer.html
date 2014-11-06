@@ -52,24 +52,24 @@
               {{ a.fixedPrice }}
             </td>
             <td>
-              <a ng-click="deletePricingLevel(a.Id)">Delete</a>
+              <a ng-click="removePricingLevel($index)">Delete</a>
             </td>
           </tr>
           <tr>
             <td>
-              <input id="pricinglevel_min" type="text" class="form-control" ng-model="a.min">
+              <input id="pricinglevel_min" type="text" class="form-control" ng-model="newPricingLevel.min">
             </td>
             <td>
-              <input id="pricinglevel_max" type="text" class="form-control" ng-model="a.max">
+              <input id="pricinglevel_max" type="text" class="form-control" ng-model="newPricingLevel.max">
             </td>
             <td>
-              <input id="pricinglevel_value" type="text" class="form-control" ng-model="a.value">
+              <input id="pricinglevel_value" type="text" class="form-control" ng-model="newPricingLevel.value">
             </td>
             <td>
-              <input id="pricinglevel_fixedprice" type="text" class="form-control" ng-model="a.fixedPrice">
+              <input id="pricinglevel_fixedprice" type="text" class="form-control" ng-model="newPricingLevel.fixedPrice">
             </td>
             <td>
-              <button class="btn btn-primary" ng-click="addPricingLevel()">Add Pricing Level</button>
+              <button class="btn btn-primary" ng-click="addPricingLevel(newPricingLevel)">Add Pricing Level</button>
             </td>
           </tr>
         </tbody>

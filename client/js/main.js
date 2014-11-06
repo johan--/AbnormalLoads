@@ -77,8 +77,14 @@ require({
     },
     'services/authorities': {
       deps: ['app']
+    },
+    'services/jobs': {
+      deps: ['app']
+    },
+    'controllers/job': {
+      deps: ['app', 'services/jobs']
     }
   }
-}, ['require', 'controllers/main', 'controllers/customer', 'controllers/authority', 'controllers/loads', 'controllers/list', 'controllers/test', 'controllers/customerlist', 'views', 'routes'], function(require) {
+}, ['require', 'controllers/main', 'controllers/job', 'controllers/customer', 'controllers/authority', 'controllers/loads', 'controllers/list', 'controllers/test', 'controllers/customerlist', 'views', 'routes'], function(require) {
   return require(['bootstrap']);
 });

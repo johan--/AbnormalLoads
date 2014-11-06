@@ -1,0 +1,94 @@
+<div class="form-horizontal">
+  <div class="panel panel-default">
+    <div class="panel-heading">Job Details</div>
+    <div class="panel-body">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Authorities</div>
+      <div class="panel-body">
+
+        <table class="col-xs-12">
+          <tr ng-repeat="a in data.authorities">
+            <td>
+              {{ a.name }}
+            </td>
+            <td>
+              <a ng-click="removeAuthority($index)">Remove</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <select ng-model="selectedAuthority" class="form-control">
+                <option ng-repeat="a in authorities">{{ a.name }} ({{ a.authorityType }})</option>
+              </select>
+            </td>
+            <td>
+              <button class="btn btn-primary" ng-click="addAuthority()">Add Authority</button>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+    </div>
+
+    <label class="control-label">Haulier:</label>
+    <select ng-model="data.haulier" class="form-control">
+      <option ng-repeat="h in hauliers">{{ h.haulierName }}</option>
+    </select>
+
+    <label class="control-label">Ref:</label>
+    <input type="text" class="form-control" ng-model="data.ref" ng-required="true" />
+
+    <label class="control-label">Date From:</label>
+    <input type="date" class="form-control" ng-model="data.dateFrom" ng-required="true" />
+
+    <label class="control-label">Date To:</label>
+    <input type="date" class="form-control" ng-model="data.dateTo" ng-required="true" />
+
+    <label class="control-label">Address From:</label>
+    <input type="text" class="form-control" ng-model="data.addressFrom" ng-required="true" />
+
+    <label class="control-label">Address To:</label>
+    <input type="text" class="form-control" ng-model="data.addressTo" ng-required="true" />
+
+    <label class="control-label">Route:</label>
+    <input type="text" class="form-control" ng-model="data.route" ng-required="true" />
+
+    <label class="control-label">Vehicle:</label>
+    <input type="text" class="form-control" ng-model="data.vehicle" ng-required="true" />
+
+    <label class="control-label">Load:</label>
+    <select ng-repeat="l in loads" ng-model="data.load" class="form-control">
+      <option>{{ l.name }}</option>
+    </select>
+
+    <label class="control-label">Number Of Loads:</label>
+    <input type="number" class="form-control" ng-model="data.numberOfLoads" ng-required="true" />
+
+    <label class="control-label">Return:</label>
+    <input type="checkbox" class="form-control" ng-model="data.return" ng-required="true" />
+
+    <label class="control-label">Reg:</label>
+    <input type="text" class="form-control" ng-model="data.reg" ng-required="true" />
+
+    <label class="control-label">Number Of Comms:</label>
+    <input type="number" class="form-control" ng-model="data.numberOfComms" ng-required="true" />
+
+    <label class="control-label">Price:</label>
+    <input type="number" class="form-control" ng-model="data.price" ng-required="true" />
+
+    <label class="control-label">VAT:</label>
+    <input type="number" class="form-control" ng-model="data.vat" ng-required="true" />
+
+    <label class="control-label">Vat Rate:</label>
+    <input type="number" class="form-control" ng-model="data.vatRate" ng-required="true" />
+    </br>
+    <button class="btn btn-primary" ng-click="saveJob()">Save</button>
+    <button class="btn btn-primary" ng-click="deleteJob()">Delete</button>
+
+  </div>
+
+</div>
+</p>
+<a href="/list/jobs">Back To List Of Jobs</a>

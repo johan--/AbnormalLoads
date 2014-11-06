@@ -1,4 +1,6 @@
 angular.module("abnormalloads").controller("customerController", ["$location", "$scope", "Customers", "$routeParams", function($location, $scope, Customers, $routeParams) {
+  $scope.data = [];
+  $scope.data.pricingLevel = [];
 
   if($routeParams.id=="add") {
     //Add new
@@ -9,33 +11,26 @@ angular.module("abnormalloads").controller("customerController", ["$location", "
     });
   }
 
-  $scope.addPricingLevel = function() {
-      var min = $("#pricinglevel_min").val();
-      var max = $("#pricinglevel_max").val();
-      var value = $("#pricinglevel_value").val();
-      var fixedprice = $("#pricinglevel_fixedprice").val();
+  $scope.removePricingLevel = function(index) {
+    //Remove the pricing level from the list
+    $scope.data.pricingLevel.splice(index,1);
+  }
 
-      var pricinglevel = { min: min, max: max, value: value, fixedPrice: fixedprice };
-
+  $scope.addPricingLevel = function(newPricingLevel) {
       //Double check our pricing rule
-      if(!$.isNumeric(min) || !$.isNumeric(max) || !$.isNumeric(value) || !$.isNumeric(fixedprice)) {
+      if(!$.isNumeric(newPricingLevel.min) || !$.isNumeric(newPricingLevel.max) || !$.isNumeric(newPricingLevel.value) || !$.isNumeric(newPricingLevel.fixedPrice)) {
         alert('The Pricing Level fields must all be numeric.');
         return;
       }
 
-      if(min>=max || min == "" || max == "" || value == "" || fixedprice == "") {
+      if(newPricingLevel.min>=newPricingLevel.max || newPricingLevel.min == "" || newPricingLevel.max == "" || newPricingLevel.value == "" || newPricingLevel.fixedprice == "") {
         alert('Pricing Level validation failed.');
         return;
       }
 
-      //If the user hasn't filled in any fields yet, this will be null
-      if($scope.data == null) $scope.data = { pricingLevel: [] };
-
-      //And so will this
-      if(!$scope.data.pricingLevel) $scope.data.pricingLevel = [];
-
       //Add it
-      $scope.data.pricingLevel.push(pricinglevel);
+      //Adding it as a new object because it was keeping the binding of our input boxes to our last added list item
+      $scope.data.pricingLevel.push({ min: newPricingLevel.min, max: newPricingLevel.max, value: newPricingLevel.max, fixedPrice: newPricingLevel.max });
 
       $("#pricinglevel_min").val("");
       $("#pricinglevel_max").val("");

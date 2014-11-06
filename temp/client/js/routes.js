@@ -7,6 +7,10 @@ angular.module('abnormalloads').config([
       templateUrl: '/views/customerlist.html',
       controller: 'customerlistController'
     })
+    .when('/jobs/:id', {
+      templateUrl: '/views/job.html',
+      controller: 'jobController'
+    })
     .when('/customers/:id', {
       templateUrl: '/views/customer.html',
       controller: 'customerController'

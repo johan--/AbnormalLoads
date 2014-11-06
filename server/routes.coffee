@@ -14,6 +14,9 @@ configure = (app, dir) ->
   gi.common.rest.routeResource 'loads'
   , app, app.middleware.publicAction, app.controllers.load
 
+  gi.common.rest.routeResource 'jobs'
+  , app, app.middleware.publicAction, app.controllers.job
+
   gi.common.rest.routeResource 'authorities'
   , app, app.middleware.publicAction, app.controllers.authority
 

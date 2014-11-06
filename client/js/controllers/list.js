@@ -1,4 +1,4 @@
-angular.module("abnormalloads").controller("listController", ["$scope", "Tests", "Customers", "Authorities", "Loads", "$location", "$routeParams", function($scope, Tests, Customers, Authorities, Loads, $location, $routeParams) {
+angular.module("abnormalloads").controller("listController", ["$scope", "Jobs", "Tests", "Customers", "Authorities", "Loads", "$location", "$routeParams", function($scope, Jobs, Tests, Customers, Authorities, Loads, $location, $routeParams) {
   $scope.message = "hello javascript";
   $scope.data = [];
   if($routeParams.type=="customers") {
@@ -32,6 +32,24 @@ angular.module("abnormalloads").controller("listController", ["$scope", "Tests",
     };
 
     Loads.all().then(function(data) {
+      $scope.data = data;
+    });
+
+  } else if ($routeParams.type=="jobs") {
+    $scope.gridOptions = {
+      disableSearch: false,
+      displayCounts: false,
+      rowSelectedEvent: "selected",
+      itemsPerPage: 10,
+      columns: [
+        {header: "Job Id", property: '_id', type: 'gi-dtproperty', visible: true, search: true},
+        {header: "Date From", property: 'dateFrom', type: 'gi-dtproperty', visible: true, search: true},
+        {header: "Date To", property: 'dateTo', type: 'gi-dtproperty', visible: true, search: true},
+        {header: "Ref", property: 'ref', type: 'gi-dtproperty', visible: true, search: true}
+      ]
+    };
+
+    Jobs.all().then(function(data) {
       $scope.data = data;
     });
 
