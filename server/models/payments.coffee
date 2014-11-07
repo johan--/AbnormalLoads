@@ -5,7 +5,7 @@ module.exports = (dal) ->
       systemId: 'ObjectId'
       invoices: ['ObjectId']
       customer: 'ObjectId'
-      value: 'String'
+      value: 'Number'
       date: 'Date'
       notes: 'String'
     options:

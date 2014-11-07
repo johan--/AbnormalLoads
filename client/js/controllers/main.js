@@ -1,5 +1,5 @@
 angular.module('abnormalloads').controller('mainController', [
-  '$scope', '$http', 'Auth', function($scope, $http, Auth) {
+  '$scope', '$http', 'Auth', '$rootScope', function($scope, $http, Auth, $rootScope) {
     var getMe;
     getMe = function() {
       return Auth.me().then(function(me) {
@@ -15,5 +15,7 @@ angular.module('abnormalloads').controller('mainController', [
     return $scope.$on('event:auth-loginChange', function() {
       return getMe();
     });
+
+    $rootScope.vatRate = 0.2;
   }
 ]);

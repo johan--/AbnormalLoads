@@ -43,9 +43,9 @@ angular.module("abnormalloads").controller("listController", ["$scope", "Jobs", 
       itemsPerPage: 10,
       columns: [
         {header: "Job Id", property: '_id', type: 'gi-dtproperty', visible: true, search: true},
+        {header: "Ref", property: 'ref', type: 'gi-dtproperty', visible: true, search: true},
         {header: "Date From", property: 'dateFrom', type: 'gi-dtproperty', visible: true, search: true},
-        {header: "Date To", property: 'dateTo', type: 'gi-dtproperty', visible: true, search: true},
-        {header: "Ref", property: 'ref', type: 'gi-dtproperty', visible: true, search: true}
+        {header: "Date To", property: 'dateTo', type: 'gi-dtproperty', visible: true, search: true}
       ]
     };
 
@@ -78,7 +78,7 @@ angular.module("abnormalloads").controller("listController", ["$scope", "Jobs", 
       itemsPerPage: 10,
       columns: [
         {header: "Id", property: '_id', type: 'gi-dtproperty', visible: true, search: true},
-        {header: "Amount", property: 'name', type: 'gi-dtproperty', visible: true, search: true},
+        {header: "Value", property: 'value', type: 'gi-dtproperty', visible: true, search: true},
         {header: "Date", property: 'date', type: 'gi-dtproperty', visible: true, search: true}
       ]
     };
@@ -87,20 +87,20 @@ angular.module("abnormalloads").controller("listController", ["$scope", "Jobs", 
       $scope.data = data;
     });
 
-  // } else if ($routeParams.type=="invoices") {
-  //   $scope.gridOptions = {
-  //     disableSearch: false,
-  //     displayCounts: false,
-  //     rowSelectedEvent: "selected",
-  //     itemsPerPage: 10,
-  //     columns: [
-  //       {header: "Id", property: '_id', type: 'gi-dtproperty', visible: true, search: true}
-  //     ]
-  //   };
-  //
-  //   Invoices.all().then(function(data) {
-  //     $scope.data = data;
-  //   });
+  } else if ($routeParams.type=="invoices") {
+    $scope.gridOptions = {
+      disableSearch: false,
+      displayCounts: false,
+      rowSelectedEvent: "selected",
+      itemsPerPage: 10,
+      columns: [
+        {header: "Id", property: '_id', type: 'gi-dtproperty', visible: true, search: true}
+      ]
+    };
+
+    Invoices.all().then(function(data) {
+      $scope.data = data;
+    });
 
   } else {
     alert('Entity Type Not Recognised.')

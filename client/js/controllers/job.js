@@ -1,8 +1,14 @@
-angular.module("abnormalloads").controller("jobController", ["$location", "$scope", "Loads", "Authorities", "Customers", "Jobs", "$routeParams", function($location, $scope, Loads, Authorities, Customers, Jobs, $routeParams) {
+angular.module("abnormalloads").controller("jobController", ["$location", "$scope", "$rootScope", "Loads", "Authorities", "Customers", "Jobs", "$routeParams", function($location, $scope, $rootScope, Loads, Authorities, Customers, Jobs, $routeParams) {
   //If the user hasn't filled in any fields yet, this will be null
-  $scope.data = [];
+  var _vatRate = 0;
+  $scope.data = {};
+  $scope.lookups = {};
+  $scope.lookups.haulier = {};
+  $scope.lookups.load = {};
 
   //And so will this
+  $scope.data.haulier = {};
+
   $scope.data.councilAuthorities = [];
   $scope.data.policeAuthorities = [];
   $scope.data.otherAuthorities = [];
@@ -62,12 +68,12 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
     } else {
       alert('Error: Unable to determine the Authority Type.');
     }
-
-  }
+  };
 
   $scope.addAuthority = function(model) {
     if(model.authorityType=="Council") {
       //Make sure it hasn't already been added
+
       for(var x = 0;x<$scope.data.councilAuthorities.length;x++) {
         if($scope.data.councilAuthorities[x]._id==model._id) {
           alert('This authority has already been added');
@@ -101,14 +107,71 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
     } else {
       alert('Error: Unable to determine the Authority Type.');
     }
-  }
+  };
+
+  $scope.priceJob = function() {
+    var rules = [];
+    var min = 0;
+    var max = 0;
+    var value = 0;
+    var fixed = 0;
+    var measure = 0;
+    var price = 0;
+    var ret = 0;
+
+    if ($scope.lookups.haulier) {
+      rules = $scope.lookups.haulier.pricingLevel;
+      for (var i=0; rules && i < rules.length; i++) {
+        measure = $scope.data.numberOfComms;
+        min = Number(rules[i].min);
+        max = Number(rules[i].max);
+        value = Number(rules[i].value);
+        fixed = Number(rules[i].fixedPrice);
+
+        if (!max) max = Number.MAX_VALUE;
+        if (measure < max) max = measure;
+        measure = (max - min + 0.00000001);
+        if (measure < 0) measure = 0;
+        measure = Math.ceil(measure);
+
+        price += (measure * value);
+        if (fixed) {
+          price += fixed;
+        }
+      }
+
+      $scope.data.price = Number(price.toFixed(2));
+      $scope.data.vatRate = _vatRate;
+      $scope.data.vat = price * $scope.data.vatRate;
+      $scope.data.vat = Number($scope.data.vat.toFixed(2));
+      //ret = Number(ret);
+    }
+    return ret;
+  };
 
   if($routeParams.id=="add") {
     //Add new
+
   } else {
     //Id passed in, grab it
     Jobs.get($routeParams.id).then(function(data) {
       $scope.data = data;
+
+      Loads.get(data.load).then(function(load) {
+        $scope.lookups.load = load;
+      });
+
+      Customers.get(data.haulier).then(function(haulier) {
+        $scope.lookups.haulier = haulier;
+      });
+
+      //Get all the authorities
+      // for(var x=0;x<data.councilAuthorities.length;x++) {
+      //   Authorities.get(data.councilAuthorities[x].id).then(function(authority) {
+      //     $scope.councilAuthorities[x] = authority;
+      //   });
+      // }
+
     });
   }
 
@@ -118,10 +181,10 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
     } else if($scope.data.councilAuthorities.length<1 && $scope.data.policeAuthorities.length<1 && $scope.data.otherAuthorities.length<1) {
       //Make sure we have at least 1 authority
         alert('You must enter at least 1 authority before you can save.');
-    } else if($scope.data.load==null) {
+    } else if($scope.lookups.load==null) {
       //Make sure we have at least 1 authority
         alert('You must choose a Load before you can save.');
-    } else if($scope.data.haulier==null) {
+    } else if($scope.lookups.haulier==null) {
       //Make sure we have at least 1 authority
         alert('You must choose a Customer before you can save.');
     } else {
@@ -131,6 +194,35 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
       // $scope.data.haulier = null;
       // $scope.data.load = null;
       // $scope.data.history = null;
+
+      //Set the haulier and load
+      $scope.data.haulier = $scope.lookups.haulier.id;
+      $scope.data.load = $scope.lookups.load.id;
+
+      // for(var x=0;x<$scope.data.councilAuthorities.length;x++) {
+      //   $scope.data.councilAuthorities[x] = $scope.data.councilAuthorities[x].id;
+      // }
+      //
+      // for(var x=0;x<$scope.data.policeAuthorities.length;x++) {
+      //   $scope.data.policeAuthorities[x] = $scope.data.policeAuthorities[x].id;
+      // }
+      //
+      // for(var x=0;x<$scope.data.otherAuthorities.length;x++) {
+      //   $scope.data.otherAuthorities[x] = $scope.data.otherAuthorities[x].id;
+      // }
+
+      // $scope.data.authorities = [];
+      // for(var x=0;x<$scope.data.councilAuthorities.length;x++) {
+      //   $scope.data.authorities.push($scope.data.councilAuthorities[x]);
+      // }
+      //
+      // for(var x=0;x<$scope.data.policeAuthorities.length;x++) {
+      //   $scope.data.authorities.push($scope.data.policeAuthorities[x]);
+      // }
+      //
+      // for(var x=0;x<$scope.data.otherAuthorities.length;x++) {
+      //   $scope.data.authorities.push($scope.data.otherAuthorities[x]);
+      // }
 
       Jobs.save($scope.data).then(function() {
         $location.path("/list/jobs");

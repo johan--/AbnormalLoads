@@ -1,6 +1,6 @@
 angular.module("abnormalloads").controller("paymentController", ["$location", "$scope", "Payments", "Jobs", "$routeParams", function($location, $scope, Payments, Jobs, $routeParams) {
   //If the user hasn't filled in any fields yet, this will be null
-  $scope.data = [];
+  $scope.data = {};
   $scope.data.jobs = [];
 
   //And so will this
@@ -14,7 +14,7 @@ angular.module("abnormalloads").controller("paymentController", ["$location", "$
   });
 
   $scope.removeJob = function(index) {
-    $scope.data.councilAuthorities.splice(index,1);
+    $scope.data.jobs.splice(index,1);
   }
 
   $scope.addJob = function(model) {
