@@ -125,6 +125,13 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
       //Make sure we have at least 1 authority
         alert('You must choose a Customer before you can save.');
     } else {
+      $scope.data.councilAuthorities = null;
+      $scope.data.policeAuthorities = null;
+      $scope.data.otherAuthorities = null;
+      $scope.data.haulier = null;
+      $scope.data.load = null;
+      $scope.data.history = null;
+
       Jobs.save($scope.data).then(function() {
         $location.path("/list/jobs");
       });

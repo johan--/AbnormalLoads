@@ -8,5 +8,5 @@ module.exports = (dal) ->
   invoices: require('./invoices') dal
   jobs: require('./jobs') dal
   loads: require('./loads') dal
-  payment: require('./payment') dal
+  payments: require('./payments') dal
   pricinglevels: require('./pricinglevels') dal
