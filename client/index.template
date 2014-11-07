@@ -36,6 +36,11 @@
             <ul class="nav navbar-nav login">
               <li>
                 <a class="navbar-brand" href="/home">Abnormal Loads</a>
+                <a class="navbar-brand" href="/list/jobs">Jobs</a>
+                <a class="navbar-brand" href="/list/authorities">Authorities</a>
+                <a class="navbar-brand" href="/list/customers">Customers</a>
+                <a class="navbar-brand" href="/list/loads">Loads</a>
+
               </li>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
               <span class="sr-only">Toggle navigation</span>

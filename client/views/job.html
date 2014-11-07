@@ -8,20 +8,62 @@
       <div class="panel-body">
 
         <table class="col-xs-12">
-          <tr ng-repeat="a in data.authorities">
+          <tr ng-repeat="a in data.councilAuthorities">
             <td>
               {{ a.name }}
             </td>
             <td>
-              <a ng-click="removeAuthority($index)">Remove</a>
+              <a ng-click="removeAuthority($index, 'council')">Remove</a>
             </td>
           </tr>
 
           <tr>
             <td>
-              <select ng-model="selectedAuthority" class="form-control">
-                <option ng-repeat="a in authorities">{{ a.name }} ({{ a.authorityType }})</option>
-              </select>
+
+              <gi-select2 options="councilAuthorities" selection="councilAuthorities" field="name" style="width: 100%"></gi-select2>
+
+            </td>
+            <td>
+              <button class="btn btn-primary" ng-click="addAuthority(selectedAuthority)">Add Authority</button>
+            </td>
+          </tr>
+        </table>
+
+        <table class="col-xs-12">
+          <tr ng-repeat="a in data.policeAuthorities">
+            <td>
+              {{ a.name }}
+            </td>
+            <td>
+              <a ng-click="removeAuthority($index, 'police')">Remove</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <gi-select2 options="policeAuthorities" selection="name" field="name" style="width: 100%"></gi-select2>
+
+            </td>
+            <td>
+              <button class="btn btn-primary" ng-click="addAuthority(selectedAuthority)">Add Authority</button>
+            </td>
+          </tr>
+        </table>
+
+        <table class="col-xs-12">
+          <tr ng-repeat="a in data.otherAuthorities">
+            <td>
+              {{ a.name }}
+            </td>
+            <td>
+              <a ng-click="removeAuthority($index, 'other')">Remove</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <gi-select2 options="otherAuthorities" selection="name" field="name" style="width: 100%"></gi-select2>
+
             </td>
             <td>
               <button class="btn btn-primary" ng-click="addAuthority(selectedAuthority)">Add Authority</button>

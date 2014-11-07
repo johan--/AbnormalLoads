@@ -4,7 +4,7 @@ module.exports = (dal) ->
     schemaDefinition:
       systemId: 'ObjectId'
       haulier: 'ObjectId'
-      authorities: ['ObjectId']
+      authorities: ['Authority']
       ref: 'String'
       dateFrom: 'Date'
       dateTo: 'Date'

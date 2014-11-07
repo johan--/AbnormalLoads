@@ -3,7 +3,21 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
   $scope.data = [];
 
   //And so will this
-  $scope.data.authorities = [];
+  $scope.data.councilAuthorities = [];
+  $scope.data.policeAuthorities = [];
+  $scope.data.otherAuthorities = [];
+
+  Authorities.query({authorityType: "Council"}).then(function(data) {
+    $scope.councilAuthorities = data;
+  });
+
+  Authorities.query({authorityType: "Police"}).then(function(data) {
+    $scope.policeAuthorities = data;
+  });
+
+  Authorities.query({authorityType: "Other"}).then(function(data) {
+    $scope.otherAuthorities = data;
+  });
 
   //Get the hauliers
   Customers.all().then(function(data) {
