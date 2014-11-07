@@ -8,65 +8,79 @@
       <div class="panel-body">
 
         <table class="col-xs-12">
+          <tr>
+            <td>
+              <label class="control-label">Councils:</label>
+            </td>
+          </tr>
           <tr ng-repeat="a in data.councilAuthorities">
             <td>
               {{ a.name }}
             </td>
             <td>
-              <a ng-click="removeAuthority($index, 'council')">Remove</a>
+              <a ng-click="removeAuthority($index, 'Council')">Remove</a>
             </td>
           </tr>
-
           <tr>
             <td>
 
-              <gi-select2 options="councilAuthorities" selection="councilAuthorities" field="name" style="width: 100%"></gi-select2>
+              <gi-select2 options="councilAuthorities" selection="selectedCouncilAuthority" field="name" style="width: 100%"></gi-select2>
 
             </td>
             <td>
-              <button class="btn btn-primary" ng-click="addAuthority(selectedAuthority)">Add Authority</button>
+              <button class="btn btn-primary" ng-click="addAuthority(selectedCouncilAuthority)">Add Authority</button>
             </td>
           </tr>
         </table>
 
         <table class="col-xs-12">
+          <tr>
+            <td>
+              <label class="control-label">Police:</label>
+            </td>
+          </tr>
           <tr ng-repeat="a in data.policeAuthorities">
             <td>
               {{ a.name }}
             </td>
             <td>
-              <a ng-click="removeAuthority($index, 'police')">Remove</a>
+              <a ng-click="removeAuthority($index, 'Police')">Remove</a>
             </td>
           </tr>
 
           <tr>
             <td>
-              <gi-select2 options="policeAuthorities" selection="name" field="name" style="width: 100%"></gi-select2>
+              <gi-select2 options="policeAuthorities" selection="selectedPoliceAuthority" field="name" style="width: 100%"></gi-select2>
 
             </td>
             <td>
-              <button class="btn btn-primary" ng-click="addAuthority(selectedAuthority)">Add Authority</button>
+              <button class="btn btn-primary" ng-click="addAuthority(selectedPoliceAuthority)">Add Authority</button>
             </td>
           </tr>
         </table>
 
         <table class="col-xs-12">
+          <tr>
+            <td>
+              <label class="control-label">Other:</label>
+            </td>
+          </tr>
           <tr ng-repeat="a in data.otherAuthorities">
             <td>
               {{ a.name }}
             </td>
             <td>
-              <a ng-click="removeAuthority($index, 'other')">Remove</a>
+              <a ng-click="removeAuthority($index, 'Other')">Remove</a>
             </td>
           </tr>
 
           <tr>
             <td>
-              <gi-select2 options="otherAuthorities" selection="name" field="name" style="width: 100%"></gi-select2>
+              <gi-select2 options="otherAuthorities" selection="selectedOtherAuthority" field="name" style="width: 100%"></gi-select2>
 
             </td>
             <td>
-              <button class="btn btn-primary" ng-click="addAuthority(selectedAuthority)">Add Authority</button>
+              <button class="btn btn-primary" ng-click="addAuthority(selectedOtherAuthority)">Add Authority</button>
             </td>
           </tr>
         </table>
@@ -75,9 +89,7 @@
     </div>
 
     <label class="control-label">Haulier:</label>
-    <select ng-model="data.haulier" class="form-control">
-      <option ng-repeat="h in hauliers">{{ h.haulierName }}</option>
-    </select>
+    <gi-select2 options="hauliers" selection="data.haulier" field="haulierName" style="width: 100%"></gi-select2>
 
     <label class="control-label">Ref:</label>
     <input type="text" class="form-control" ng-model="data.ref" ng-required="true" />
@@ -101,9 +113,7 @@
     <input type="text" class="form-control" ng-model="data.vehicle" ng-required="true" />
 
     <label class="control-label">Load:</label>
-    <select ng-repeat="l in loads" ng-model="data.load" class="form-control">
-      <option>{{ l.name }}</option>
-    </select>
+    <gi-select2 options="loads" selection="data.load" field="name" style="width: 100%"></gi-select2>
 
     <label class="control-label">Number Of Loads:</label>
     <input type="number" class="form-control" ng-model="data.numberOfLoads" ng-required="true" />

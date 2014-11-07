@@ -3,6 +3,14 @@ angular.module('abnormalloads').config([
     $routeProvider.when('/', {
       templateUrl: '/views/home.html'
     })
+    .when('/payments/:id', {
+      templateUrl: '/views/payment.html',
+      controller: 'paymentController'
+    })
+    .when('/payments', {
+      templateUrl: '/views/payment.html',
+      controller: 'paymentController'
+    })
     .when('/customers', {
       templateUrl: '/views/customerlist.html',
       controller: 'customerlistController'

@@ -35,12 +35,14 @@
           <div class="navbar-header">
             <ul class="nav navbar-nav login">
               <li>
-                <a class="navbar-brand" href="/home">Abnormal Loads</a>
+                <a class="navbar-brand" href="/home">Home</a>
                 <a class="navbar-brand" href="/list/jobs">Jobs</a>
                 <a class="navbar-brand" href="/list/authorities">Authorities</a>
                 <a class="navbar-brand" href="/list/customers">Customers</a>
                 <a class="navbar-brand" href="/list/loads">Loads</a>
-
+                <a class="navbar-brand" href="/list/payments">Payments</a>
+                <a class="navbar-brand" href="/list/invoices">Invoices</a>
+                <a class="navbar-brand" href="/paymentsummary">Payment Summary</a>
               </li>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
               <span class="sr-only">Toggle navigation</span>

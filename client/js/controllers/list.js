@@ -1,4 +1,4 @@
-angular.module("abnormalloads").controller("listController", ["$scope", "Jobs", "Tests", "Customers", "Authorities", "Loads", "$location", "$routeParams", function($scope, Jobs, Tests, Customers, Authorities, Loads, $location, $routeParams) {
+angular.module("abnormalloads").controller("listController", ["$scope", "Jobs", "Tests", "Customers", "Authorities", "Loads", "Payments", "Invoices", "$location", "$routeParams", function($scope, Jobs, Tests, Customers, Authorities, Loads, Payments, Invoices, $location, $routeParams) {
   $scope.message = "hello javascript";
   $scope.data = [];
   if($routeParams.type=="customers") {
@@ -69,6 +69,38 @@ angular.module("abnormalloads").controller("listController", ["$scope", "Jobs", 
     Authorities.all().then(function(data) {
       $scope.data = data;
     });
+
+  } else if ($routeParams.type=="payments") {
+    $scope.gridOptions = {
+      disableSearch: false,
+      displayCounts: false,
+      rowSelectedEvent: "selected",
+      itemsPerPage: 10,
+      columns: [
+        {header: "Id", property: '_id', type: 'gi-dtproperty', visible: true, search: true},
+        {header: "Amount", property: 'name', type: 'gi-dtproperty', visible: true, search: true},
+        {header: "Date", property: 'date', type: 'gi-dtproperty', visible: true, search: true}
+      ]
+    };
+
+    Payments.all().then(function(data) {
+      $scope.data = data;
+    });
+
+  // } else if ($routeParams.type=="invoices") {
+  //   $scope.gridOptions = {
+  //     disableSearch: false,
+  //     displayCounts: false,
+  //     rowSelectedEvent: "selected",
+  //     itemsPerPage: 10,
+  //     columns: [
+  //       {header: "Id", property: '_id', type: 'gi-dtproperty', visible: true, search: true}
+  //     ]
+  //   };
+  //
+  //   Invoices.all().then(function(data) {
+  //     $scope.data = data;
+  //   });
 
   } else {
     alert('Entity Type Not Recognised.')

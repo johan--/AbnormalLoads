@@ -9,4 +9,4 @@ module.exports = (app) ->
   invoice: ccf app.models.invoices
   authority: ccf app.models.authorities
   load: ccf app.models.loads
-  payment: ccf app.models.payment
+  payment: ccf app.models.payments

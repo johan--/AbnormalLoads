@@ -14,6 +14,12 @@ configure = (app, dir) ->
   gi.common.rest.routeResource 'loads'
   , app, app.middleware.publicAction, app.controllers.load
 
+  gi.common.rest.routeResource 'invoices'
+  , app, app.middleware.publicAction, app.controllers.invoice
+
+  gi.common.rest.routeResource 'payments'
+  , app, app.middleware.publicAction, app.controllers.payment
+
   gi.common.rest.routeResource 'jobs'
   , app, app.middleware.publicAction, app.controllers.job
 

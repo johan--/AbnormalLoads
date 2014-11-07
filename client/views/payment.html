@@ -1,0 +1,51 @@
+<div class="form-horizontal">
+  <div class="panel panel-default">
+    <div class="panel-heading">Payments Details</div>
+    <div class="panel-body">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Jobs</div>
+      <div class="panel-body">
+
+        <table class="col-xs-12">
+          <tr ng-repeat="a in data.jobs">
+            <td>
+              {{ a.ref }}
+            </td>
+            <td>
+              <a ng-click="removeJob($index)">Remove</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+
+              <gi-select2 options="availableJobs" selection="selectedJob" field="ref" style="width: 100%"></gi-select2>
+
+            </td>
+            <td>
+              <button class="btn btn-primary" ng-click="addJob(selectedJob)">Add Job</button>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+    </div>
+
+    <label class="control-label">Invoice Amount:</label>
+    <input type="number" class="form-control" ng-model="data.amount" ng-required="true" />
+
+    <label class="control-label">VAT:</label>
+    <input type="number" class="form-control" ng-model="data.vat" ng-required="true" />
+
+    <label class="control-label">VAT Rate:</label>
+    <input type="number" class="form-control" ng-model="data.vatRate" ng-required="true" />
+
+    </br>
+    <button class="btn btn-primary" ng-click="savePayment()">Save</button>
+    <button class="btn btn-primary" ng-click="deletePayment()">Delete</button>
+
+  </div>
+
+</div>
+</p>
+<a href="/list/jobs">Back To List Of Jobs</a>

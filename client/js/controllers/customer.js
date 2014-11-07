@@ -17,6 +17,14 @@ angular.module("abnormalloads").controller("customerController", ["$location", "
   }
 
   $scope.addPricingLevel = function(newPricingLevel) {
+      //Make sure it hasn't been previously added
+      for(var x = 0;x<$scope.data.pricingLevel.length;x++) {
+        if($scope.data.pricingLevel[x].min==newPricingLevel.min && $scope.data.pricingLevel[x].max==newPricingLevel.max && $scope.data.pricingLevel[x].value==newPricingLevel.value && $scope.data.pricingLevel[x].fixedPrice==newPricingLevel.fixedPrice) {
+          alert('This pricing level has already been added.');
+          return;
+        }
+      }
+
       //Double check our pricing rule
       if(!$.isNumeric(newPricingLevel.min) || !$.isNumeric(newPricingLevel.max) || !$.isNumeric(newPricingLevel.value) || !$.isNumeric(newPricingLevel.fixedPrice)) {
         alert('The Pricing Level fields must all be numeric.');
@@ -30,7 +38,9 @@ angular.module("abnormalloads").controller("customerController", ["$location", "
 
       //Add it
       //Adding it as a new object because it was keeping the binding of our input boxes to our last added list item
-      $scope.data.pricingLevel.push({ min: newPricingLevel.min, max: newPricingLevel.max, value: newPricingLevel.max, fixedPrice: newPricingLevel.max });
+      $scope.data.pricingLevel.push({ min: newPricingLevel.min, max: newPricingLevel.max, value: newPricingLevel.value, fixedPrice: newPricingLevel.fixedPrice });
+
+      //$scope.data.pricingLevel.push(new);
 
       $("#pricinglevel_min").val("");
       $("#pricinglevel_max").val("");
