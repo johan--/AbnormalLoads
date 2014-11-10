@@ -1,5 +1,5 @@
 angular.module("abnormalloads").controller("customerController", ["$location", "$scope", "Customers", "$routeParams", function($location, $scope, Customers, $routeParams) {
-  $scope.data = [];
+  $scope.data = {};
   $scope.data.pricingLevel = [];
 
   if($routeParams.id=="add") {

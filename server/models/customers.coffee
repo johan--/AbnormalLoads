@@ -13,6 +13,7 @@ module.exports = (dal) ->
       license: 'String'
       regNo: 'String'
       pricingLevel: ['PricingLevel']
+      balance: {type: 'Number', default: 0}
     options:
       collection: 'Customers'
 

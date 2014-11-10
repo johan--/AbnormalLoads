@@ -75,7 +75,14 @@ angular.module('abnormalloads').config([
       templateUrl: '/views/authority.html',
       controller: 'authorityController'
     })
-
+    .when('/invoices/:id', {
+      templateUrl: '/views/invoice.html',
+      controller: 'invoiceController'
+    })
+    .when('/invoices/add', {
+      templateUrl: '/views/invoice.html',
+      controller: 'invoiceController'
+    })
     .otherwise({
       redirectTo: '/'
     });

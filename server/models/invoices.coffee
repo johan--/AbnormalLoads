@@ -7,6 +7,8 @@ module.exports = (dal) ->
       amount: 'Number'
       vat: 'Number'
       vatRate: 'Number'
+      date: 'Date'
+      paid: 'Boolean'
     options:
       collection: 'Invoices'
 
