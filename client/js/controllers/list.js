@@ -42,7 +42,7 @@ angular.module("abnormalloads").controller("listController", ["$scope", "Jobs", 
       rowSelectedEvent: "selected",
       itemsPerPage: 10,
       columns: [
-        {header: "Job Id", property: '_id', type: 'gi-dtproperty', visible: true, search: true},
+        {header: "Job Id", property: 'jobId', type: 'gi-dtproperty', visible: true, search: true},
         {header: "Ref", property: 'ref', type: 'gi-dtproperty', visible: true, search: true},
         {header: "Date From", property: 'dateFrom', type: 'gi-dtproperty', visible: true, search: true},
         {header: "Date To", property: 'dateTo', type: 'gi-dtproperty', visible: true, search: true}

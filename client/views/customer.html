@@ -2,7 +2,8 @@
   <div class="panel panel-default">
     <div class="panel-heading">Customer Details</div>
     <div class="panel-body">
-
+        <label class="control-label">Customer Code:</label>
+        <input type="text" class="form-control" ng-model="data.customerCode" ng-pattern="/^[a-zA-Z]" ng-required="true" />
         <label class="control-label">Haulier Name:</label>
         <input type="text" class="form-control" ng-model="data.haulierName" ng-required="true" />
         <label class="control-label">Haulier Contact Name:</label>

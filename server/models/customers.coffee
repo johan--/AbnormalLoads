@@ -3,6 +3,7 @@ module.exports = (dal) ->
     name: 'Customer'
     schemaDefinition:
       systemId: 'ObjectId'
+      customerCode: 'String'
       haulierName: 'String'
       haulierFAOContactName: 'String'
       address: 'String'

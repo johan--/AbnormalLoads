@@ -1,6 +1,6 @@
-angular.module("abnormalloads").factory("Jobs", [
+angular.module("abnormalloads").factory("Customers", [
   "giCrud", function(Crud) {
-    var crud = Crud.factory("Jobs", true);
+    var crud = Crud.factory("Customers", true);
     return crud;
   }
 ]);
