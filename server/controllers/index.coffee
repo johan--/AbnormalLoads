@@ -1,13 +1,13 @@
 gi = require 'gi-util'
-customer = require('./customers.coffee')
+job = require('./job')
 ccf = gi.common.crudControllerFactory
 
 module.exports = (app) ->
   #page: ccf app.models.pages
   #customer: ccf app.models.customers
-  customer: customer app.models.customers
+  customer: ccf app.models.customers
   test: ccf app.models.tests
-  job: ccf app.models.jobs
+  job: job app.models
   invoice: ccf app.models.invoices
   authority: ccf app.models.authorities
   load: ccf app.models.loads

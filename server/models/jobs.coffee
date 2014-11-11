@@ -3,6 +3,7 @@ module.exports = (dal) ->
     name: 'Job'
     schemaDefinition:
       systemId: 'ObjectId'
+      jobId: 'String'
       haulier: 'ObjectId'
       councilAuthorities: ['Authority']
       policeAuthorities: ['Authority']
