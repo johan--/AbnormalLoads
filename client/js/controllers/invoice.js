@@ -45,9 +45,8 @@ angular.module("abnormalloads").controller("invoiceController", ["$location", "$
       //Make sure we have at least 1 job
       alert('You must select at least 1 job before you can save.');
     } else {
-
       for(var x=0;x<$scope.data.jobs.length;x++) {
-        $scope.data.jobs[x]=$scope.data.jobs[x]._id;
+        $scope.data.jobs[x].id=$scope.data.jobs[x]._id;
       }
 
       Invoices.save($scope.data).then(function() {

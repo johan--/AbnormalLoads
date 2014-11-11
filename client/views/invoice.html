@@ -8,9 +8,25 @@
       <div class="panel-body">
 
         <table class="col-xs-12">
+          <th>
+            Job Id
+          </th>
+          <th>
+            Ref
+          </th>
+          <th>
+            Price
+          </th>
+          <th> </th>
           <tr ng-repeat="a in data.jobs">
             <td>
+              {{ a.jobId }}
+            </td>
+            <td>
               {{ a.ref }}
+            </td>
+            <td>
+              {{ a.price }}
             </td>
             <td>
               <a ng-click="removeJob($index)">Remove</a>
@@ -19,7 +35,7 @@
           <tr>
             <td>
 
-              <gi-select2 options="availableJobs" selection="selectedJob" field="ref" style="width: 100%"></gi-select2>
+              <gi-select2 options="availableJobs" selection="selectedJob" field="jobId" style="width: 100%"></gi-select2>
 
             </td>
             <td>

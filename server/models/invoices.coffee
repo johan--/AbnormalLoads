@@ -4,7 +4,7 @@ module.exports = (dal) ->
     schemaDefinition:
       systemId: 'ObjectId'
       invoiceId: 'String'
-      jobs: ['ObjectId']
+      jobs: [ { id: 'ObjectId', jobId: 'String', ref: 'String', price: 'Number' }]
       amount: 'Number'
       vat: 'Number'
       vatRate: 'Number'

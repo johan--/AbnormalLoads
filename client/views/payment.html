@@ -8,9 +8,10 @@
       <div class="panel-body">
 
         <table class="col-xs-12">
+          <th>Invoice Id</th>
           <tr ng-repeat="a in data.invoices">
             <td>
-              {{ a.ref }}
+              {{ a.invoiceId }}
             </td>
             <td>
               <a ng-click="removeInvoice($index)">Remove</a>
@@ -19,7 +20,7 @@
           <tr>
             <td>
 
-              <gi-select2 options="availableInvoices" selection="selectedJob" field="ref" style="width: 100%"></gi-select2>
+              <gi-select2 options="availableInvoices" selection="selectedInvoice" field="invoiceId" style="width: 100%"></gi-select2>
 
             </td>
             <td>
@@ -35,13 +36,13 @@
     <input type="number" class="form-control" ng-model="data.value" ng-required="true" />
 
     <label class="control-label">Date Payment Received:</label>
-    <input type="date" class="form-control" ng-model="data.date" ng-required="true" />
+    <input class="form-control" is-open="false" datepicker-popup="dd/MM/yyyy" ng-model="data.date" ng-required="true" close-text="Close" />
 
-    <label class="control-label">VAT:</label>
-    <input type="number" class="form-control" ng-model="data.vat" ng-required="true" />
+    <label class="control-label hide">VAT:</label>
+    <input type="number" class="form-control hide" ng-model="data.vat" ng-required="true" />
 
-    <label class="control-label">VAT Rate:</label>
-    <input type="number" class="form-control" ng-model="data.vatRate" ng-required="true" />
+    <label class="control-label hide">VAT Rate:</label>
+    <input type="number" class="form-control hide" ng-model="data.vatRate" ng-required="true" />
 
     </br>
     <button class="btn btn-primary" ng-click="savePayment()">Save</button>

@@ -3,7 +3,8 @@ module.exports = (dal) ->
     name: 'Payment'
     schemaDefinition:
       systemId: 'ObjectId'
-      invoices: ['ObjectId']
+      paymentId: 'String'
+      invoices: [ { id: 'ObjectId', invoiceId: 'String' }]
       customer: 'ObjectId'
       value: 'Number'
       date: 'Date'
