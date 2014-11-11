@@ -1,6 +1,6 @@
 angular.module("abnormalloads").controller("loadController", ["$scope", "Loads", "$routeParams", "$location", function($scope, Loads, $routeParams, $location) {
-  $scope.data = [];
-  
+  $scope.data = {};
+
   if($routeParams.id=="add") {
     //Add new
   } else {

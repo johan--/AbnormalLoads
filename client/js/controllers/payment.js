@@ -1,32 +1,32 @@
-angular.module("abnormalloads").controller("paymentController", ["$location", "$scope", "Payments", "Jobs", "$routeParams", function($location, $scope, Payments, Jobs, $routeParams) {
+angular.module("abnormalloads").controller("paymentController", ["$location", "$scope", "Payments", "Invoices", "$routeParams", function($location, $scope, Payments, Invoices, $routeParams) {
   //If the user hasn't filled in any fields yet, this will be null
   $scope.data = {};
-  $scope.data.jobs = [];
+  $scope.data.invoices = [];
 
   //And so will this
-  $scope.data.availableJobs = [];
+  $scope.data.availableInvoices = [];
 
-  Jobs.all().then(function(data) {
+  Invoices.all().then(function(data) {
     for(var x=0;x<data.length;x++) {
       data[x].id = data[x]._id;
     }
-    $scope.availableJobs = data;
+    $scope.availableInvoices = data;
   });
 
-  $scope.removeJob = function(index) {
-    $scope.data.jobs.splice(index,1);
+  $scope.removeInvoice = function(index) {
+    $scope.data.invoices.splice(index,1);
   }
 
-  $scope.addJob = function(model) {
+  $scope.addInvoice = function(model) {
       //Make sure it hasn't already been added
-      for(var x = 0;x<$scope.data.jobs.length;x++) {
-        if($scope.data.jobs[x]._id==model._id) {
-          alert('This Job has already been added');
+      for(var x = 0;x<$scope.data.invoices.length;x++) {
+        if($scope.data.invoices[x]._id==model._id) {
+          alert('This Invoice has already been added');
           return;
         }
       }
 
-      $scope.data.jobs.push(model);
+      $scope.data.invoices.push(model);
   }
 
   if($routeParams.id=="add") {
@@ -41,9 +41,9 @@ angular.module("abnormalloads").controller("paymentController", ["$location", "$
   $scope.savePayment = function() {
     if($(".ng-invalid") && $(".ng-invalid").length>0) {
       alert('You must complete all fields before you can save.')
-    } else if($scope.data.jobs.length<1) {
-      //Make sure we have at least 1 job
-      alert('You must select at least 1 job before you can save.');
+    } else if($scope.data.invoices.length<1) {
+      //Make sure we have at least 1 invoice
+      alert('You must select at least 1 invoice before you can save.');
     } else {
       Payments.save($scope.data).then(function() {
         $location.path("/list/payments");

@@ -28,7 +28,7 @@ module.exports = (dal) ->
       space5to6: 'String'
       space6to7: 'String'
       space7to8: 'String'
-      spae8to9: 'String'
+      space8to9: 'String'
       space9to10: 'String'
       wheels1: 'String'
       wheels2: 'String'

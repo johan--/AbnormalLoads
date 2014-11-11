@@ -4,26 +4,26 @@
     <div class="panel-body">
 
     <div class="panel panel-default">
-      <div class="panel-heading">Jobs</div>
+      <div class="panel-heading">Invoices</div>
       <div class="panel-body">
 
         <table class="col-xs-12">
-          <tr ng-repeat="a in data.jobs">
+          <tr ng-repeat="a in data.invoices">
             <td>
               {{ a.ref }}
             </td>
             <td>
-              <a ng-click="removeJob($index)">Remove</a>
+              <a ng-click="removeInvoice($index)">Remove</a>
             </td>
           </tr>
           <tr>
             <td>
 
-              <gi-select2 options="availableJobs" selection="selectedJob" field="ref" style="width: 100%"></gi-select2>
+              <gi-select2 options="availableInvoices" selection="selectedJob" field="ref" style="width: 100%"></gi-select2>
 
             </td>
             <td>
-              <button class="btn btn-primary" ng-click="addJob(selectedJob)">Add Job</button>
+              <button class="btn btn-primary" ng-click="addInvoice(selectedInvoice)">Add Invoice</button>
             </td>
           </tr>
         </table>
@@ -51,4 +51,4 @@
 
 </div>
 </p>
-<a href="/list/jobs">Back To List Of Jobs</a>
+<a href="/list/payments">Back To List Of Payments</a>

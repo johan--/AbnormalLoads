@@ -1,10 +1,10 @@
-angular.module("abnormalloads").controller("invoiceController", ["$location", "$scope", "Invoices", "Jobs", "$routeParams", function($location, $scope, Invoices, Jobs, $routeParams) {
+angular.module("abnormalloads").controller("paymentSummaryController", ["$location", "$scope", "Invoices", "Jobs", "$routeParams", function($location, $scope, Invoices, Jobs, $routeParams) {
   //If the user hasn't filled in any fields yet, this will be null
   $scope.data = {};
   $scope.data.jobs = [];
 
   //And so will this
-  $scope.availableJobs = [];
+  $scope.data.availableJobs = [];
 
   Jobs.all().then(function(data) {
     for(var x=0;x<data.length;x++) {
@@ -45,11 +45,6 @@ angular.module("abnormalloads").controller("invoiceController", ["$location", "$
       //Make sure we have at least 1 job
       alert('You must select at least 1 job before you can save.');
     } else {
-
-      for(var x=0;x<$scope.data.jobs.length;x++) {
-        $scope.data.jobs[x]=$scope.data.jobs[x]._id;
-      }
-
       Invoices.save($scope.data).then(function() {
         $location.path("/list/invoices");
       });
