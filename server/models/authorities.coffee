@@ -3,6 +3,7 @@ module.exports = (dal) ->
     name: 'Authority'
     schemaDefinition:
       systemId: 'ObjectId'
+      authorityId: 'String'
       name: 'String'
       address: 'String'
       postcode: 'String'

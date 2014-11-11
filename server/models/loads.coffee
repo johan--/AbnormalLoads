@@ -3,6 +3,7 @@ module.exports = (dal) ->
     name: 'Load'
     schemaDefinition:
       systemId: 'ObjectId'
+      loadId: 'String'
       name: 'String'
       vehicleLength: 'String'
       front: 'String'

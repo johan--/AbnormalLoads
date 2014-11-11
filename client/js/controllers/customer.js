@@ -1,7 +1,7 @@
 angular.module("abnormalloads").controller("customerController", ["$location", "$scope", "Customers", "$routeParams", function($location, $scope, Customers, $routeParams) {
   $scope.data = {};
   $scope.data.pricingLevel = [];
-  
+
   if($routeParams.id=="add") {
     //Add new
   } else {
@@ -53,7 +53,7 @@ angular.module("abnormalloads").controller("customerController", ["$location", "
     if($(".ng-invalid") && $(".ng-invalid").length>0) {
       alert('You must complete all fields before you can save.')
     } else if(!$scope.data.pricingLevel || $scope.data.pricingLevel.length<1) {
-      alert('You must add at least one pricing level before you can save.')
+      alert('You must add at least one pricing level before you can save.');
     } else {
       Customers.save($scope.data).then(function() {
         $location.path("/list/customers");

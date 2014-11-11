@@ -3,6 +3,7 @@ module.exports = (dal) ->
     name: 'Invoice'
     schemaDefinition:
       systemId: 'ObjectId'
+      invoiceId: 'String'
       jobs: ['ObjectId']
       amount: 'Number'
       vat: 'Number'

@@ -8,9 +8,9 @@ angular.module("abnormalloads").controller("listController", ["$scope", "Jobs", 
       rowSelectedEvent: "selected",
       itemsPerPage: 10,
       columns: [
+        {header: "Id", property: 'customerId', type: 'gi-dtproperty', visible: true, search: true},
         {header: "Haulier Name", property: 'haulierName', type: 'gi-dtproperty', visible: true, search: true},
-        {header: "Tel", property: 'tel', type: 'gi-dtproperty', visible: true, search: true},
-        {header: "Postcode", property: 'postcode', type: 'gi-dtproperty', visible: true, search: true}
+        {header: "Customer Code", property: 'customerCode', type: 'gi-dtproperty', visible: true, search: true}
       ]
     };
 
@@ -25,9 +25,8 @@ angular.module("abnormalloads").controller("listController", ["$scope", "Jobs", 
       rowSelectedEvent: "selected",
       itemsPerPage: 10,
       columns: [
-        {header: "Load Name", property: 'name', type: 'gi-dtproperty', visible: true, search: true},
-        {header: "Vehicle Length", property: 'vehicleLength', type: 'gi-dtproperty', visible: true, search: true},
-        {header: "Gross Weight", property: 'grossWeight', type: 'gi-dtproperty', visible: true, search: true}
+        {header: "Load Id", property: 'loadId', type: 'gi-dtproperty', visible: true, search: true},
+        {header: "Load Name", property: 'name', type: 'gi-dtproperty', visible: true, search: true}
       ]
     };
 
@@ -60,9 +59,9 @@ angular.module("abnormalloads").controller("listController", ["$scope", "Jobs", 
       rowSelectedEvent: "selected",
       itemsPerPage: 10,
       columns: [
+        {header: "Authority Id", property: 'authorityId', type: 'gi-dtproperty', visible: true, search: true},
         {header: "Name", property: 'name', type: 'gi-dtproperty', visible: true, search: true},
-        {header: "Authority Type", property: 'authorityType', type: 'gi-dtproperty', visible: true, search: true},
-        {header: "Postcode", property: 'postcode', type: 'gi-dtproperty', visible: true, search: true}
+        {header: "Authority Type", property: 'authorityType', type: 'gi-dtproperty', visible: true, search: true}
       ]
     };
 
@@ -77,7 +76,7 @@ angular.module("abnormalloads").controller("listController", ["$scope", "Jobs", 
       rowSelectedEvent: "selected",
       itemsPerPage: 10,
       columns: [
-        {header: "Id", property: '_id', type: 'gi-dtproperty', visible: true, search: true},
+        {header: "Payment Id", property: 'paymentId', type: 'gi-dtproperty', visible: true, search: true},
         {header: "Value", property: 'value', type: 'gi-dtproperty', visible: true, search: true},
         {header: "Date", property: 'date', type: 'gi-dtproperty', visible: true, search: true}
       ]
@@ -94,7 +93,7 @@ angular.module("abnormalloads").controller("listController", ["$scope", "Jobs", 
       rowSelectedEvent: "selected",
       itemsPerPage: 10,
       columns: [
-        {header: "Id", property: '_id', type: 'gi-dtproperty', visible: true, search: true}
+        {header: "Invoice Id", property: 'invoiceId', type: 'gi-dtproperty', visible: true, search: true}
       ]
     };
 
