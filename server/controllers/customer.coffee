@@ -9,7 +9,7 @@ module.exports = (models) ->
         res.json 500, {message: "counters.getNext: " + err}
       else
         id = Number(cnt)
-        req.body.customerId = id
+        req.body.customerId = req.body.customerCode + id
         crud.create req, res, () ->
           res.json 200, res.giResult
 

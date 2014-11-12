@@ -197,6 +197,7 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
 
       //Set the haulier and load
       $scope.data.haulier = $scope.lookups.haulier.id;
+      $scope.data.customerCode = $scope.lookups.haulier.customerCode;
       $scope.data.load = $scope.lookups.load.id;
 
       // for(var x=0;x<$scope.data.councilAuthorities.length;x++) {
