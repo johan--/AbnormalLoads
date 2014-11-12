@@ -15,7 +15,7 @@ module.exports = (models) ->
         console.log "id is " + id
         console.log "id length is " + id?.length
 
-        id = utils.pad(id,4,0)
+        id = utils.pad id,4,0
 
         console.log "id is now " + id
 
