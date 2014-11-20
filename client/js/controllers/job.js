@@ -161,7 +161,7 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
         $scope.lookups.load = load;
       });
 
-      Customers.get(data.haulier).then(function(haulier) {
+      Customers.get(data.haulier.id).then(function(haulier) {
         $scope.lookups.haulier = haulier;
       });
 
@@ -196,7 +196,11 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
       // $scope.data.history = null;
 
       //Set the haulier and load
-      $scope.data.haulier = $scope.lookups.haulier.id;
+      //$scope.data.haulier = $scope.lookups.haulier.id;
+      $scope.data.haulierId = $scope.lookups.haulier.id;
+      $scope.data.haulier = $scope.lookups.haulier;
+      //$scope.data.haulier.haulierName = $scope.lookups.haulier.haulierName;
+
       $scope.data.customerCode = $scope.lookups.haulier.customerCode;
       $scope.data.load = $scope.lookups.load.id;
 

@@ -38,12 +38,6 @@
     <label class="control-label">Date Payment Received:</label>
     <input class="form-control" is-open="false" datepicker-popup="dd/MM/yyyy" ng-model="data.date" ng-required="true" close-text="Close" />
 
-    <label class="control-label hide">VAT:</label>
-    <input type="number" class="form-control hide" ng-model="data.vat" ng-required="true" />
-
-    <label class="control-label hide">VAT Rate:</label>
-    <input type="number" class="form-control hide" ng-model="data.vatRate" ng-required="true" />
-
     </br>
     <button class="btn btn-primary" ng-click="savePayment()">Save</button>
     <button class="btn btn-primary" ng-click="deletePayment()">Delete</button>

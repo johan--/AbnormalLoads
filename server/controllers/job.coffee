@@ -10,14 +10,8 @@ module.exports = (models) ->
         res.json 500, {message: "counters.getNext: " + err}
       else
         id = Number(cnt)
-        id = String(id)
-
-        console.log "id is " + id
-        console.log "id length is " + id?.length
 
         id = utils.pad id,4,0
-
-        console.log "id is now " + id
 
         req.body.jobId = req.body.customerCode + id
         crud.create req, res, () ->

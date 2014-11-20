@@ -1,17 +1,41 @@
-angular.module("abnormalloads").controller("invoiceController", ["$location", "$scope", "Invoices", "Jobs", "$routeParams", function($location, $scope, Invoices, Jobs, $routeParams) {
+angular.module("abnormalloads").controller("invoiceController", ["$location", "$scope", "Invoices", "Jobs", "$routeParams", "$window", "Customers", function($location, $scope, Invoices, Jobs, $routeParams, $window, Customers) {
   //If the user hasn't filled in any fields yet, this will be null
   $scope.data = {};
+  $scope.data.paid = false;
   $scope.data.jobs = [];
+  $scope.showPrint = false;
 
   //And so will this
   $scope.availableJobs = [];
 
-  Jobs.all().then(function(data) {
+  $scope.availableHauliers = [];
+
+  $scope.outstandinginvoices = [];
+
+  Customers.all().then(function(data) {
     for(var x=0;x<data.length;x++) {
       data[x].id = data[x]._id;
     }
-    $scope.availableJobs = data;
+    $scope.availableHauliers = data;
   });
+
+  $scope.searchJobs = function() {
+
+    Jobs.query({ "query": { "haulierId": $scope.selectedHaulier._id, "dateFrom": {"$gte": $scope.jobSearchFrom, "$lt": $scope.jobSearchTo } } } ).then(function(data) {
+      for(var x=0;x<data.length;x++) {
+        data[x].id = data[x]._id;
+      }
+      $scope.availableJobs = data;
+    });
+
+    //Jobs.query({ haulierId: $scope.selectedHaulier._id }).then(function(data) {
+    //  for(var x=0;x<data.length;x++) {
+    //    data[x].id = data[x]._id;
+    //  }
+    //  $scope.availableJobs = data;
+    //});
+
+  }
 
   $scope.removeJob = function(index) {
     $scope.data.jobs.splice(index,1);
@@ -35,7 +59,16 @@ angular.module("abnormalloads").controller("invoiceController", ["$location", "$
     //Id passed in, grab it
     Invoices.get($routeParams.id).then(function(data) {
       $scope.data = data;
+
+      $scope.showPrint = true;
     });
+  }
+
+  $scope.generateInvoice = function() {
+    //Generate a printable invoice for this model
+    $window.open("/invoices/generateinvoice/" + $routeParams.id);
+    //$location.path("/invoices/generateinvoice/" + $routeParams.id);
+
   }
 
   $scope.saveInvoice = function() {
@@ -54,6 +87,19 @@ angular.module("abnormalloads").controller("invoiceController", ["$location", "$
       });
     }
   };
+
+  $scope.getTotalCost = function() {
+    var totalCost = 0;
+    for(var x=0;x<$scope.data.jobs.length;x++) {
+      totalCost = totalCost + $scope.data.jobs[x].price;
+    }
+
+    return totalCost;
+  }
+
+  Invoices.query({ paid: false }).then(function(data) {
+    $scope.outstandinginvoices = data;
+  });
 
   $scope.deleteInvoice = function() {
     Invoices.destroy($scope.data._id);

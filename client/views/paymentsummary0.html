@@ -1,0 +1,36 @@
+<div class="invoiceheader">Abnormal Load Logistics Ltd</div>
+<div class="invoiceheaderaddress">36 Monks Drive, Withnell, Chorley, Lancs PR6 8SG</div>
+<p class="invoiceaddress">J C Gillespie Ltd</p>
+<p>invoicedate</p>
+<p>Northbank Ind Park</p>
+<p>Irlam</p>
+<p>Manchester</p>
+<p>M44 5BR</p>
+
+<table class="invoicetable">
+  <tr>
+    <th>DATE</th>
+    <th>REF</th>
+    <th>ITEM</th>
+    <th>AMOUNT</th>
+  </tr>
+  <tr ng-repeat="i in data.invoices">
+    <td>{{ i.date }}</td>
+    <td>{{ i.ref }}</td>
+    <td>{{ i._id }}</td>
+    <td>{{ i.amount }}</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>Balance Owning</td>
+    <td></td>
+
+</table>
+<div>
+Make all cheques payable to Abnormal Load Logistics Ltd
+If you have any questions concerning this invoice, contact Lynn Kenmare
+Tel:01254 830767, Fax:01254 220494, Email Lynn@abloads.co.uk
+Company No: 8415197
+</div>
+<b>THANK YOU FOR YOUR BUSINESS</b>

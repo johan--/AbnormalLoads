@@ -1,59 +1,28 @@
 angular.module("abnormalloads").controller("paymentSummaryController", ["$location", "$scope", "Invoices", "Jobs", "$routeParams", function($location, $scope, Invoices, Jobs, $routeParams) {
   //If the user hasn't filled in any fields yet, this will be null
   $scope.data = {};
-  $scope.data.jobs = [];
+  $scope.data.invoices = [];
 
-  //And so will this
-  $scope.data.availableJobs = [];
+  //Work out the invoice period
+  var day = $routeParams.day;
+  var month = $routeParams.month;
+  var year = $routeParams.year;
+  var queryFromDate = year + "-" + month + day;
+  var queryToDate = year + "-" + month+1 + day;
+  var customerId = $routeParams.customerId;
 
-  Jobs.all().then(function(data) {
-    for(var x=0;x<data.length;x++) {
-      data[x].id = data[x]._id;
-    }
-    $scope.availableJobs = data;
+  Customers.get($routeParams.id).then(function(data) {
+    $scope.data = data;
   });
 
-  $scope.removeJob = function(index) {
-    $scope.data.jobs.splice(index,1);
-  }
-
-  $scope.addJob = function(model) {
-      //Make sure it hasn't already been added
-      for(var x = 0;x<$scope.data.jobs.length;x++) {
-        if($scope.data.jobs[x]._id==model._id) {
-          alert('This Job has already been added');
-          return;
-        }
-      }
-
-      $scope.data.jobs.push(model);
-  }
-
-  if($routeParams.id=="add") {
-    //Add new
-  } else {
-    //Id passed in, grab it
-    Invoices.get($routeParams.id).then(function(data) {
-      $scope.data = data;
-    });
-  }
-
-  $scope.saveInvoice = function() {
-    if($(".ng-invalid") && $(".ng-invalid").length>0) {
-      alert('You must complete all fields before you can save.')
-    } else if($scope.data.jobs.length<1) {
-      //Make sure we have at least 1 job
-      alert('You must select at least 1 job before you can save.');
+  Invoices.query({ date > queryFromDate, date < queryToDate }).then(function(data) {
+    if(data.length>0 && data[0].customerCode.toLowerCase()==$scope.data.customerCode.toLowerCase()) {
+      alert('This Customer Code has already been used. Please use a different Customer Code.')
     } else {
-      Invoices.save($scope.data).then(function() {
-        $location.path("/list/invoices");
+      Customers.save($scope.data).then(function() {
+        $location.path("/list/customers");
       });
     }
-  };
-
-  $scope.deleteInvoice = function() {
-    Invoices.destroy($scope.data._id);
-    $location.path("/list/invoices");
-  };
+  });
 
 }]) ;

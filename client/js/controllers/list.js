@@ -93,6 +93,22 @@ angular.module("abnormalloads").controller("listController", ["$scope", "Jobs", 
       rowSelectedEvent: "selected",
       itemsPerPage: 10,
       columns: [
+        {header: "Invoice Id", property: 'invoiceId', type: 'gi-dtproperty', visible: true, search: true},
+        {header: "Paid", property: 'paid', type: 'gi-dtproperty', visible: true, search: true}
+      ]
+    };
+
+    Invoices.all().then(function(data) {
+      $scope.data = data;
+    });
+
+  } else if ($routeParams.type=="invoicesummary") {
+    $scope.gridOptions = {
+      disableSearch: false,
+      displayCounts: false,
+      rowSelectedEvent: "selected",
+      itemsPerPage: 10,
+      columns: [
         {header: "Invoice Id", property: 'invoiceId', type: 'gi-dtproperty', visible: true, search: true}
       ]
     };

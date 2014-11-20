@@ -1,4 +1,5 @@
 gi = require 'gi-util'
+utils = require('./utils')
 
 module.exports = (models) ->
   crud = gi.common.crudControllerFactory models.customers
@@ -9,6 +10,9 @@ module.exports = (models) ->
         res.json 500, {message: "counters.getNext: " + err}
       else
         id = Number(cnt)
+        
+        id = utils.pad id, 4, '0'
+
         req.body.customerId = req.body.customerCode + id
         crud.create req, res, () ->
           res.json 200, res.giResult

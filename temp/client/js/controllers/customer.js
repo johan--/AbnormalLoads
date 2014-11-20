@@ -55,9 +55,17 @@ angular.module("abnormalloads").controller("customerController", ["$location", "
     } else if(!$scope.data.pricingLevel || $scope.data.pricingLevel.length<1) {
       alert('You must add at least one pricing level before you can save.');
     } else {
-      Customers.save($scope.data).then(function() {
-        $location.path("/list/customers");
+      //Make sure the customer code hasn't already been used
+      Customers.query({customerCode: $scope.data.customerCode}).then(function(data) {
+        if(data.length>0 && data[0].customerCode.toLowerCase()==$scope.data.customerCode.toLowerCase()) {
+          alert('This Customer Code has already been used. Please use a different Customer Code.')
+        } else {
+          Customers.save($scope.data).then(function() {
+            $location.path("/list/customers");
+          });
+        }
       });
+
     }
   };
 
