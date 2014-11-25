@@ -125,7 +125,7 @@
     <input type="text" class="form-control" ng-model="data.reg" ng-required="true" />
 
     <label class="control-label">Number Of Comms:</label>
-    <input type="number" class="form-control" ng-model="data.numberOfComms" ng-change="priceJob()" ng-required="true" />
+    <input type="number" class="form-control" ng-model="data.numberOfComms" ng-pattern="^[1-9][0-9]*$" ng-change="priceJob()" ng-required="true" />
 
     <label class="control-label">Price: &pound;{{ data.price | number:2 }}</label>
     <!--
