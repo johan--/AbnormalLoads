@@ -3,15 +3,49 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
   var _vatRate = 0;
   $scope.data = {};
   $scope.lookups = {};
-  $scope.lookups.haulier = {};
-  $scope.lookups.load = {};
+  //$scope.lookups.haulier = {};
+  //$scope.lookups.load = {};
 
   //And so will this
   $scope.data.haulier = {};
+  $scope.showDelete = false;
+  $scope.showGenerateNotice = false;
 
   $scope.data.councilAuthorities = [];
   $scope.data.policeAuthorities = [];
   $scope.data.otherAuthorities = [];
+
+  $scope.getAuthorities = function(authorityType) {
+    var ret = '';
+    if(authorityType=='police') {
+      for(var x=0;x<$scope.data.policeAuthorities.length;x++) {
+        ret += $scope.data.policeAuthorities[x].name + ', ';
+      }
+    } else if(authorityType=='council') {
+      for(var x=0;x<$scope.data.councilAuthorities.length;x++) {
+        ret += $scope.data.councilAuthorities[x].name + ', ';
+      }
+    } else {
+      for(var x=0;x<$scope.data.otherAuthorities.length;x++) {
+        ret += $scope.data.otherAuthorities[x].name + ', ';
+      }
+    }
+
+    if(ret=='') {
+      ret = 'None';
+    } else {
+      ret = ret.substring(0,ret.length-2);
+    }
+    return ret;
+  }
+
+  $scope.generateNotice = function() {
+    $location.path("jobs/generatenotice/" + $scope.data._id);
+  }
+
+  $scope.$watch('lookups.haulier', function() {
+    $scope.priceJob();
+  });
 
   Authorities.query({authorityType: "Council"}).then(function(data) {
     for(var x=0;x<data.length;x++) {
@@ -119,6 +153,11 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
     var price = 0;
     var ret = 0;
 
+    if($scope.data.numberOfComms==null) {
+      $scope.data.price = 0;
+      return ret;
+    }
+
     if ($scope.lookups.haulier) {
       rules = $scope.lookups.haulier.pricingLevel;
       for (var i=0; rules && i < rules.length; i++) {
@@ -156,8 +195,10 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
     //Id passed in, grab it
     Jobs.get($routeParams.id).then(function(data) {
       $scope.data = data;
+      $scope.showDelete = true;
+      $scope.showGenerateNotice = true;
 
-      Loads.get(data.load).then(function(load) {
+      Loads.get(data.load.id).then(function(load) {
         $scope.lookups.load = load;
       });
 
@@ -197,12 +238,13 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
 
       //Set the haulier and load
       //$scope.data.haulier = $scope.lookups.haulier.id;
+
       $scope.data.haulierId = $scope.lookups.haulier.id;
       $scope.data.haulier = $scope.lookups.haulier;
       //$scope.data.haulier.haulierName = $scope.lookups.haulier.haulierName;
 
       $scope.data.customerCode = $scope.lookups.haulier.customerCode;
-      $scope.data.load = $scope.lookups.load.id;
+      $scope.data.load = $scope.lookups.load;
 
       // for(var x=0;x<$scope.data.councilAuthorities.length;x++) {
       //   $scope.data.councilAuthorities[x] = $scope.data.councilAuthorities[x].id;

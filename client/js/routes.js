@@ -15,6 +15,10 @@ angular.module('abnormalloads').config([
       templateUrl: '/views/generateinvoice.html',
       controller: 'invoiceController'
     })
+    .when('/jobs/generatenotice/:id', {
+      templateUrl: '/views/generatenotice.html',
+      controller: 'jobController'
+    })
     .when('/customers', {
       templateUrl: '/views/customerlist.html',
       controller: 'customerlistController'

@@ -23,7 +23,7 @@
         <label class="control-label">Other</label><input type="radio" name="authorityType" value="Other" ng-model="data.authorityType"><br>
         </br>
         <button class="btn btn-primary" ng-click="saveAuthority()">Save</button>
-        <button class="btn btn-primary" ng-click="deleteAuthority()">Delete</button>
+        <button class="btn btn-primary" ng-show="showDelete" ng-click="deleteAuthority()">Delete</button>
     </div>
   </div>
 

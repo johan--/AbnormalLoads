@@ -1,0 +1,404 @@
+<style>
+  .navbar {
+    display:none;
+  }
+
+  body {
+    padding-top: 0px;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  table th,tr,td {
+    border: 1px solid black;
+  }
+
+  .footer {
+    width: 100%;
+    bottom: 50px;
+    position: fixed;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+    top: 5px;
+    left: 5px;
+    background-image: 'url(../images/logo.png)';
+    float: left;
+  }
+
+  .noticeheader {
+    text-align: center;
+  }
+
+</style>
+<img class="logo" />
+<div class="noticeheader">
+<h1 style="text-decoration: underline;">ABNORMAL LOAD LOGISTICS LTD</h1></br>
+<b>Form of Notice to Police and to Highways and Bridge Authorities.</br>
+The Motor Vehicles (Authorisation of Special Types)<br>
+General Order, 2003</b></br>
+</br>
+In pursuance of Article(s) of the above Order, I/We being the operator of the under mentioned vehicle(s) to which the</br>
+Order applies, hereby give notice that it is my/our intention to use the said vehicle(s) on the roads specified below.</br>
+The route and Department of Transport Classification numbers proposed to be used are:</br>
+</br>
+<div style="float: left">Operator</div>
+<div>This notification does not relieve the haulier of their responsibility to ensure the route below is navigatable and that the required period of notice has been allowed.</div>
+<h1>{{ data.haulier.haulierName }}</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Address</th>
+      <th>Telephone</th>
+      <th>Fax</th>
+      <th>Email</th>
+      <th>Haulier Tel</th>
+      <th>Haulier Fax</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ data.haulier.address }}</td>
+      <td>01254 830767</td>
+      <td>01254 220494</td>
+      <td>lynn@abloads.co.uk</td>
+      <td>{{ lookups.haulier.tel }}</td>
+      <td>{{ lookups.haulier.fax }}</td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <th>Date</th>
+    <th>Reference</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        {{ data.dateOfNotice }}
+      </td>
+      <td>
+        {{ data.jobId }} {{ data.suffix }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+</br>
+List of all Police Forces, Highways and Bridge Authorities to which this form is sent.
+</br>
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <b>Police</b>
+      </td>
+      <td>
+        {{ getAuthorities('police') }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Councils</b>
+      </td>
+      <td>
+        {{ getAuthorities('council') }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Other</b>
+      </td>
+      <td>
+        {{ getAuthorities('other') }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+</br>
+
+<table>
+  <thead>
+    <tr>
+      <td>
+        FROM (Full Address)
+      </td>
+      <td>
+        TIME and DATE
+      </td>
+      <td>
+        ROUTE VIA
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        {{ data.addressFrom }}
+      </td>
+      <td>
+        BETWEEN</br>
+        {{ data.dateFrom }}
+      </td>
+      <td>
+        {{ data.route }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+</br>
+<b>**REVERSE ROUTE FOR RETURN JOURNEY**</b>
+
+<table>
+  <thead>
+    <tr>
+      <td>
+        TO (Full Address)
+      </td>
+      <td>
+        TIME and DATE
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        {{ data.addressTo }}
+      </td>
+      <td>
+        AND</br>
+        {{ data.dateTo }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+</br>
+
+<table>
+  <thead>
+    <tr>
+      <td>
+        No. Of Loads
+      </td>
+      <td>
+        Return
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        {{ data.numberOfLoads }}
+      </td>
+      <td>
+        {{ data.return }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+</br>
+
+<table>
+  <thead>
+    <tr>
+      <td>
+        Registration of Substitute
+      </td>
+      <td>
+        Type Of Vehicle
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        {{ data.reg }}
+      </td>
+      <td>
+        {{ data.vehicle }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+</br>
+
+<table>
+  <thead>
+    <tr>
+      <td>
+        Rigid Length
+      </td>
+      <td>
+        Projection Front
+      </td>
+      <td>
+        Projection Rear
+      </td>
+      <td>
+        Total Length
+      </td>
+      <td>
+        Overall Width of Vehicle
+      </td>
+      <td>
+        Maximum Height
+      </td>
+      <td>
+        Gross Weight or Gross Train Weight
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        {{ lookups.load.length }}
+      </td>
+      <td>
+        {{ lookups.load.front }}
+      </td>
+      <td>
+        {{ lookups.load.rear }}
+      </td>
+      <td>
+        {{ lookups.load.length }}
+      </td>
+      <td>
+        {{ lookups.load.width }}
+      </td>
+      <td>
+        {{ lookups.load.height }}
+      </td>
+      <td>
+        {{ lookups.load.grossWeight }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+</br>
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        No Of Wheels
+      </td>
+      <td>
+        {{ lookups.load.wheels1 }}
+      </td>
+      <td>
+        {{ lookups.load.wheels2 }}
+      </td>
+      <td>
+        {{ lookups.load.wheels3 }}
+      </td>
+      <td>
+        {{ lookups.load.wheels4 }}
+      </td>
+      <td>
+        {{ lookups.load.wheels5 }}
+      </td>
+      <td>
+        {{ lookups.load.wheels6 }}
+      </td>
+      <td>
+        {{ lookups.load.wheels7 }}
+      </td>
+      <td>
+        {{ lookups.load.wheels8 }}
+      </td>
+      <td>
+        {{ lookups.load.wheels9 }}
+      </td>
+      <td>
+        {{ lookups.load.wheels10 }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Weight Per Axle
+      </td>
+      <td>
+        {{ lookups.load.weight1 }}
+      </td>
+      <td>
+        {{ lookups.load.weight2 }}
+      </td>
+      <td>
+        {{ lookups.load.weight3 }}
+      </td>
+      <td>
+        {{ lookups.load.weight4 }}
+      </td>
+      <td>
+        {{ lookups.load.weight5 }}
+      </td>
+      <td>
+        {{ lookups.load.weight6 }}
+      </td>
+      <td>
+        {{ lookups.load.weight7 }}
+      </td>
+      <td>
+        {{ lookups.load.weight8 }}
+      </td>
+      <td>
+        {{ lookups.load.weight9 }}
+      </td>
+      <td>
+        {{ lookups.load.weight10 }}
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Axle Spacing
+      </td>
+      <td>
+        {{ lookups.load.space1to2 }}
+      </td>
+      <td>
+        {{ lookups.load.space2to3 }}
+      </td>
+      <td>
+        {{ lookups.load.space3to4 }}
+      </td>
+      <td>
+        {{ lookups.load.space4to5 }}
+      </td>
+      <td>
+        {{ lookups.load.space5to6 }}
+      </td>
+      <td>
+        {{ lookups.load.space6to7 }}
+      </td>
+      <td>
+        {{ lookups.load.space7to8 }}
+      </td>
+      <td>
+        {{ lookups.load.space8to9 }}
+      </td>
+      <td>
+        {{ lookups.load.space9to10 }}
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+</br>
+
+
+
+
+</br>
+<div class="footer2">
+Make all cheques payable to Abnormal Load Logistics Ltd</br>
+If you have any questions concerning this invoice, contact Lynn Kenmare</br>
+Tel: 01254 830767, Fax: 01254 220494, Email: Lynn@abloads.co.uk</br>
+Company No: 8415197</br></br>
+<b>THANK YOU FOR YOUR BUSINESS</b>
+</div>
+</br>

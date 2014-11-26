@@ -4,10 +4,12 @@ angular.module("abnormalloads").controller("customerController", ["$location", "
 
   if($routeParams.id=="add") {
     //Add new
+    $scope.showDelete = false;
   } else {
     //Id passed in, grab it
     Customers.get($routeParams.id).then(function(data) {
       $scope.data = data;
+      $scope.showDelete = true;
     });
   }
 

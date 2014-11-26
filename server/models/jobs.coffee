@@ -5,10 +5,11 @@ module.exports = (dal) ->
       systemId: 'ObjectId'
       jobId: 'String'
       haulierId: 'ObjectId'
-      haulier: { id: 'ObjectId', haulierName: 'String' }
+      haulier: { id: 'ObjectId', haulierName: 'String', address: 'String' }
       councilAuthorities: ['Authority']
       policeAuthorities: ['Authority']
       otherAuthorities: ['Authority']
+      dateOfNotice: 'Date'
       ref: 'String'
       dateFrom: 'Date'
       dateTo: 'Date'
@@ -16,7 +17,7 @@ module.exports = (dal) ->
       addressTo: 'String'
       route: 'String'
       vehicle: 'String'
-      load: 'ObjectId'
+      load: { id: 'ObjectId', name: 'String' }
       numberOfLoads: 'Number'
       return: 'Boolean'
       reg: 'String'
@@ -25,6 +26,7 @@ module.exports = (dal) ->
       price: 'Number'
       vat: 'Number'
       vatRate: 'Number'
+      suffix: 'String'
     options:
       collection: 'Jobs'
 
