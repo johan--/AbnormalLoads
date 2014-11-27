@@ -199,10 +199,12 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
       $scope.showGenerateNotice = true;
 
       Loads.get(data.load.id).then(function(load) {
+        load.id = load._id;
         $scope.lookups.load = load;
       });
 
       Customers.get(data.haulier.id).then(function(haulier) {
+        haulier.id = haulier._id;
         $scope.lookups.haulier = haulier;
       });
 
