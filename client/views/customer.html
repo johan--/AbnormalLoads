@@ -2,28 +2,72 @@
   <div class="panel panel-default">
     <div class="panel-heading">Customer Details</div>
     <div class="panel-body">
-        <label class="control-label">Customer Code (3-5 characters):</label>
-        <input type="text" class="form-control" ng-model="data.customerCode" ng-pattern="/^[a-zA-Z0-9]{3,5}$/" ng-required="true" />
-        <label class="control-label">Haulier Name:</label>
-        <input type="text" class="form-control" ng-model="data.haulierName" ng-required="true" />
-        <label class="control-label">Haulier Contact Name:</label>
-        <input type="text" class="form-control" ng-model="data.haulierFAOContactName" ng-required="true" />
-        <label class="control-label">Address:</label>
-        <input type="text" class="form-control" ng-model="data.address" ng-required="true" />
-        <label class="control-label">Postcode:</label>
-        <input type="text" class="form-control" ng-model="data.postcode" ng-required="true" />
-        <label class="control-label">Email Address:</label>
-        <input type="email" class="form-control" ng-model="data.emailAddress" ng-required="true" />
-        <label class="control-label">Tel:</label>
-        <input type="text" class="form-control" ng-model="data.tel" ng-required="true" />
-        <label class="control-label">Fax:</label>
-        <input type="text" class="form-control" ng-model="data.fax" ng-required="true" />
-        <label class="control-label">License:</label>
-        <input type="text" class="form-control" ng-model="data.license" ng-required="true" />
-        <label class="control-label">RegNo:</label>
-        <input type="text" class="form-control" ng-model="data.regNo" ng-required="true" />
-        <label class="control-label">Balance:</label>
-        <p class="form-control-static">{{ data.balance }}</p>
+
+      <div class="row">
+        <div class="col-md-6">
+          <label class="control-label">Customer Code (3-5 characters):</label>
+          <input type="text" class="form-control" ng-model="data.customerCode" ng-pattern="/^[a-zA-Z0-9]{3,5}$/" ng-required="true" />
+        </div>
+        <div class="col-md-6">
+          <label class="control-label">Haulier Name:</label>
+          <input type="text" class="form-control" ng-model="data.haulierName" ng-required="true" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="control-label">Haulier Contact Name:</label>
+          <input type="text" class="form-control" ng-model="data.haulierFAOContactName" ng-required="true" />
+        </div>
+        <div class="col-md-6">
+          <label class="control-label">Address:</label>
+          <input type="text" class="form-control" ng-model="data.address" ng-required="true" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <label class="control-label">Postcode:</label>
+          <input type="text" class="form-control" ng-model="data.postcode" ng-required="true" />
+        </div>
+        <div class="col-md-6">
+          <label class="control-label">Email Address:</label>
+          <input type="email" class="form-control" ng-model="data.emailAddress" ng-required="true" />
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <label class="control-label">Tel:</label>
+          <input type="text" class="form-control" ng-model="data.tel" ng-required="true" />
+        </div>
+        <div class="col-md-6">
+          <label class="control-label">Fax:</label>
+          <input type="text" class="form-control" ng-model="data.fax" ng-required="true" />
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <label class="control-label">License:</label>
+          <input type="text" class="form-control" ng-model="data.license" ng-required="true" />
+        </div>
+        <div class="col-md-6">
+          <label class="control-label">RegNo:</label>
+          <input type="text" class="form-control" ng-model="data.regNo" ng-required="true" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <label class="control-label">Balance:</label>
+
+          <p class="form-control-static">{{ data.balance }}</p>
+
+        </div>
+      </div>
+
 
     </div>
   </div>

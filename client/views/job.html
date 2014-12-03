@@ -88,57 +88,130 @@
       </div>
     </div>
 
-    <label class="control-label">Haulier:</label>
-    <gi-select2 options="hauliers" selection="lookups.haulier" field="customerCode" style="width: 100%"></gi-select2>
+      <div class="row">
 
-    <label class="control-label">Additional Reference:</label>
-    <input type="text" class="form-control" ng-model="data.ref" ng-required="true" />
+        <div class="col-md-6">
+          <label class="control-label">Haulier:</label>
+          <gi-select2 options="hauliers" selection="lookups.haulier" field="customerCode" style="width: 100%"></gi-select2>
+        </div>
 
-    <label class="control-label">Suffix:</label>
-    <input type="text" class="form-control" ng-model="data.suffix" ng-required="true" />
+        <div class="col-md-6">
+          <label class="control-label">Additional Reference:</label>
+          <input type="text" class="form-control" ng-model="data.ref" ng-required="true" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="control-label">Suffix:</label>
+          <input type="text" class="form-control" ng-model="data.suffix" ng-required="true" />
 
-    <label class="control-label">Date Of Notice:</label>
-    <input type="text" class="form-control" is-open="false" datepicker-popup="dd/MM/yyyy" ng-model="data.dateOfNotice" ng-required="true" close-text="Close" />
+        </div>
+        <div class="col-md-6">
 
-    <label class="control-label">Date From:</label>
-    <input type="text" class="form-control" is-open="false" datepicker-popup="dd/MM/yyyy" ng-model="data.dateFrom" ng-required="true" close-text="Close" />
+          <label class="control-label">Date Of Notice:</label>
+          <input type="text" class="form-control" is-open="false" datepicker-popup="dd/MM/yyyy" ng-model="data.dateOfNotice" ng-required="true" close-text="Close" />
 
-    <label class="control-label">Date To:</label>
-    <input type="text" class="form-control" is-open="false" datepicker-popup="dd/MM/yyyy" ng-model="data.dateTo" ng-required="true" close-text="Close" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="control-label">Date From:</label>
+          <input type="text" class="form-control" is-open="false" datepicker-popup="dd/MM/yyyy" ng-model="data.dateFrom" ng-required="true" close-text="Close" />
 
-    <label class="control-label">Address From:</label>
-    <input type="text" class="form-control" ng-model="data.addressFrom" ng-required="true" />
+        </div>
+        <div class="col-md-6">
+          <label class="control-label">Date To:</label>
+          <input type="text" class="form-control" is-open="false" datepicker-popup="dd/MM/yyyy" ng-model="data.dateTo" ng-required="true" close-text="Close" />
 
-    <label class="control-label">Address To:</label>
-    <input type="text" class="form-control" ng-model="data.addressTo" ng-required="true" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="control-label">Address From:</label>
+          <input type="text" class="form-control" ng-model="data.addressFrom" ng-required="true" />
 
-    <label class="control-label">Route:</label>
-    <input type="text" class="form-control" ng-model="data.route" ng-required="true" />
+        </div>
+        <div class="col-md-6">
+          <label class="control-label">Address To:</label>
+          <input type="text" class="form-control" ng-model="data.addressTo" ng-required="true" />
 
-    <label class="control-label">Type Of Vehicle:</label>
-    <input type="text" class="form-control" ng-model="data.vehicle" ng-required="true" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="control-label">Route:</label>
+          <input type="text" class="form-control" ng-model="data.route" ng-required="true" />
 
-    <label class="control-label">Load Description:</label>
-    <gi-select2 options="loads" selection="lookups.load" field="name" style="width: 100%"></gi-select2>
+        </div>
+        <div class="col-md-6">
+          <label class="control-label">Type Of Vehicle:</label>
+          <input type="text" class="form-control" ng-model="data.vehicle" ng-required="true" />
 
-    <label class="control-label">Number Of Loads:</label>
-    <input type="number" class="form-control" ng-model="data.numberOfLoads" ng-required="true" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="control-label">Load Description:</label>
+          <gi-select2 options="loads" selection="lookups.load" field="name" style="width: 100%"></gi-select2>
 
-    <label class="control-label">Return:</label>
-    <input type="checkbox" class="form-control" ng-model="data.return" />
+        </div>
+        <div class="col-md-6">
+          <label class="control-label">Number Of Loads:</label>
+          <input type="number" class="form-control" ng-model="data.numberOfLoads" ng-required="true" />
 
-    <label class="control-label">Vehicle Reg:</label>
-    <input type="text" class="form-control" ng-model="data.reg" ng-required="true" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="control-label">Return:</label>
+          <input type="checkbox" class="form-control" ng-model="data.return" />
 
-    <label class="control-label">Number Of Comms:</label>
-    <input type="number" class="form-control" ng-model="data.numberOfComms" ng-change="priceJob()" ng-required="true" />
+        </div>
 
-    <label class="control-label">Price: &pound;{{ data.price | number:2 }}</label>
+        <div class="col-md-6">
+          <label class="control-label">Vehicle Reg:</label>
+          <input type="text" class="form-control" ng-model="data.reg" ng-required="true" />
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <label class="control-label">Number Of Comms:</label>
+          <input type="number" class="form-control" ng-model="data.numberOfComms" ng-change="priceJob()" ng-required="true" />
+
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <label class="control-label">Price: &pound;{{ data.price | number:2 }}</label>
+          <label class="control-label" ng-show="data.vatRate > 0">VAT: &pound;{{ data.vat | number:2 }}</label></br>
+          <label class="control-label">Total: &pound;{{ (data.price + data.vat) | number:2 }}</label>
+
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <button class="btn btn-primary" ng-click="saveJob()">Save</button>
+          <button class="btn btn-primary" ng-show="showDelete" ng-click="deleteJob()">Delete</button>
+          <button class="btn btn-primary" ng-show="showGenerateNotice" ng-click="generateNotice()">Generate Notice</button>
+
+        </div>
+      </div>
+
+
+    </div>
+
+
+
     <!--
     <input type="number" class="form-control" ng-model="data.price" ng-required="true" />
     -->
 
-    <label class="control-label" ng-show="data.vatRate > 0">VAT: &pound;{{ data.vat | number:2 }}</label>
     <!--
     <input type="number" class="form-control" ng-model="data.vat" ng-required="true" />
 
@@ -146,13 +219,7 @@
     <input type="number" class="form-control" ng-model="data.vatRate" ng-required="true" />
     -->
 
-    <label class="control-label">Total: &pound;{{ (data.price + data.vat) | number:2 }}</label>
-
-    </br>
-    <button class="btn btn-primary" ng-click="saveJob()">Save</button>
-    <button class="btn btn-primary" ng-show="showDelete" ng-click="deleteJob()">Delete</button>
-    <button class="btn btn-primary" ng-show="showGenerateNotice" ng-click="generateNotice()">Generate Notice</button>
-  </div>
+    </div>
 
 </div>
 </p>
