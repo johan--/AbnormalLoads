@@ -34,6 +34,24 @@
     text-align: center;
   }
 
+  #FromAddress {
+    width: 48%;
+    float:left;
+  }
+
+  #ToAddress {
+    width: 48%;
+    float:right;
+  }
+
+  #ParticularsOfLoad {
+
+  }
+
+  #Via {
+    width: 50%;
+  }
+
 </style>
 <img class="logo" />
 <div class="noticeheader">
@@ -72,6 +90,8 @@ The route and Department of Transport Classification numbers proposed to be used
     </tr>
   </tbody>
 </table>
+</br>
+
 <table>
   <thead>
     <th>Date</th>
@@ -80,7 +100,7 @@ The route and Department of Transport Classification numbers proposed to be used
   <tbody>
     <tr>
       <td>
-        {{ data.dateOfNotice }}
+        {{ data.dateOfNotice | date: "dd/MM/yyyy" }}
       </td>
       <td>
         {{ data.jobId }} {{ data.suffix }}
@@ -121,17 +141,14 @@ List of all Police Forces, Highways and Bridge Authorities to which this form is
 </table>
 </br>
 
-<table>
+<table id="FromAddress">
   <thead>
     <tr>
       <td>
-        FROM (Full Address)
+        <b>FROM (Full Address)</b>
       </td>
       <td>
-        TIME and DATE
-      </td>
-      <td>
-        ROUTE VIA
+        <b>TIME and DATE</b>
       </td>
     </tr>
   </thead>
@@ -142,67 +159,71 @@ List of all Police Forces, Highways and Bridge Authorities to which this form is
       </td>
       <td>
         BETWEEN</br>
-        {{ data.dateFrom }}
-      </td>
-      <td>
-        {{ data.route }}
+        {{ data.dateFrom | date: "dd/MM/yyyy" }}
       </td>
     </tr>
-  </tbody>
-</table>
-</br>
-<b>**REVERSE ROUTE FOR RETURN JOURNEY**</b>
-
-<table>
-  <thead>
+    <tr>
+      <td colspan="10">
+        <b>**REVERSE ROUTE FOR RETURN JOURNEY**</b>
+      </td>
+    </tr>
     <tr>
       <td>
-        TO (Full Address)
+        <b>TO (Full Address)</b>
       </td>
       <td>
-        TIME and DATE
+        <b>TIME and DATE</b>
       </td>
     </tr>
-  </thead>
-  <tbody>
     <tr>
       <td>
         {{ data.addressTo }}
       </td>
       <td>
         AND</br>
-        {{ data.dateTo }}
+        {{ data.dateTo | date: "dd/MM/yyyy" }}
       </td>
     </tr>
   </tbody>
 </table>
 </br>
 
-<table>
+<table id="Via" style="width: 45%;float:right;">
   <thead>
     <tr>
-      <td>
-        No. Of Loads
-      </td>
-      <td>
-        Return
+      <td colspan="2">
+        <b>Via</b>
       </td>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <td colspan="2">
+        {{ data.route }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <b>DESCRIPTION OF LOAD</b>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        {{ data.load.name }}
+      </td>
+    </tr>
+    <tr>
       <td>
-        {{ data.numberOfLoads }}
+        <b>No of Loads:</b> {{ data.numberOfLoads }}
       </td>
       <td>
-        {{ data.return }}
+        <b>RETURN:</b> {{ data.return }}
       </td>
     </tr>
   </tbody>
 </table>
-</br>
 
-<table>
+<table id="RegistrationOrSubstitute" style="clear:both;">
   <thead>
     <tr>
       <td>
@@ -230,25 +251,25 @@ List of all Police Forces, Highways and Bridge Authorities to which this form is
   <thead>
     <tr>
       <td>
-        Rigid Length
+        <b>Rigid Length</b>
       </td>
       <td>
-        Projection Front
+        <b>Projection Front</b>
       </td>
       <td>
-        Projection Rear
+        <b>Projection Rear</b>
       </td>
       <td>
-        Total Length
+        <b>Total Length</b>
       </td>
       <td>
-        Overall Width of Vehicle
+        <b>Overall Width of Vehicle</b>
       </td>
       <td>
-        Maximum Height
+        <b>Maximum Height</b>
       </td>
       <td>
-        Gross Weight or Gross Train Weight
+        <b>Gross Weight or Gross Train Weight</b>
       </td>
     </tr>
   </thead>
@@ -284,7 +305,7 @@ List of all Police Forces, Highways and Bridge Authorities to which this form is
   <tbody>
     <tr>
       <td>
-        No Of Wheels
+        <b>No Of Wheels</b>
       </td>
       <td>
         {{ lookups.load.wheels1 }}
@@ -319,7 +340,7 @@ List of all Police Forces, Highways and Bridge Authorities to which this form is
     </tr>
     <tr>
       <td>
-        Weight Per Axle
+        <b>Weight Per Axle</b>
       </td>
       <td>
         {{ lookups.load.weight1 }}
@@ -355,7 +376,7 @@ List of all Police Forces, Highways and Bridge Authorities to which this form is
 
     <tr>
       <td>
-        Axle Spacing
+        <b>Axle Spacing</b>
       </td>
       <td>
         {{ lookups.load.space1to2 }}
