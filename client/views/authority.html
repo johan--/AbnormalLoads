@@ -1,4 +1,4 @@
-<div class="form-horizontal">
+<form name="authForm" class="form-horizontal">
   <div class="panel panel-default">
     <div class="panel-heading">Authority Details</div>
     <div class="panel-body">
@@ -22,10 +22,8 @@
         <label class="control-label">Police</label><input type="radio" name="authorityType" value="Police" ng-model="data.authorityType"><br>
         <label class="control-label">Other</label><input type="radio" name="authorityType" value="Other" ng-model="data.authorityType"><br>
         </br>
-        <button class="btn btn-primary" ng-click="saveAuthority()">Save</button>
+        <button class="btn btn-primary" ng-click="saveAuthority()" ng-disabled="!authForm.$valid">Save</button>
         <button class="btn btn-primary" ng-show="showDelete" ng-click="deleteAuthority()">Delete</button>
     </div>
   </div>
-
-</p>
-<a href="/list/authorities">Back To List Of Customers</a>
+</form>
