@@ -2,7 +2,10 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
   //If the user hasn't filled in any fields yet, this will be null
   var _vatRate = 0;
   $scope.data = {};
-  $scope.lookups = {};
+  $scope.lookups = {
+    authorities: [],
+    selectedAuthority: null
+  };
   //$scope.lookups.haulier = {};
   //$scope.lookups.load = {};
 
@@ -15,30 +18,6 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
   $scope.data.policeAuthorities = [];
   $scope.data.otherAuthorities = [];
 
-  $scope.getAuthorities = function(authorityType) {
-    var ret = '';
-    if(authorityType=='police') {
-      for(var x=0;x<$scope.data.policeAuthorities.length;x++) {
-        ret += $scope.data.policeAuthorities[x].name + ', ';
-      }
-    } else if(authorityType=='council') {
-      for(var x=0;x<$scope.data.councilAuthorities.length;x++) {
-        ret += $scope.data.councilAuthorities[x].name + ', ';
-      }
-    } else {
-      for(var x=0;x<$scope.data.otherAuthorities.length;x++) {
-        ret += $scope.data.otherAuthorities[x].name + ', ';
-      }
-    }
-
-    if(ret=='') {
-      ret = 'None';
-    } else {
-      ret = ret.substring(0,ret.length-2);
-    }
-    return ret;
-  }
-
   $scope.generateNotice = function() {
     $location.path("jobs/generatenotice/" + $scope.data._id);
   }
@@ -47,25 +26,8 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
     $scope.priceJob();
   });
 
-  Authorities.query({authorityType: "Council"}).then(function(data) {
-    for(var x=0;x<data.length;x++) {
-      data[x].id = data[x]._id;
-    }
-    $scope.councilAuthorities = data;
-  });
-
-  Authorities.query({authorityType: "Police"}).then(function(data) {
-    for(var x=0;x<data.length;x++) {
-      data[x].id = data[x]._id;
-    }
-    $scope.policeAuthorities = data;
-  });
-
-  Authorities.query({authorityType: "Other"}).then(function(data) {
-    for(var x=0;x<data.length;x++) {
-      data[x].id = data[x]._id;
-    }
-    $scope.otherAuthorities = data;
+  Authorities.query().then(function(data) {
+    $scope.lookups.authorities = data;
   });
 
   //Get the hauliers
@@ -76,14 +38,6 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
     $scope.hauliers = data;
   });
 
-  //Get the hauliers
-  Authorities.all().then(function(data) {
-    for(var x=0;x<data.length;x++) {
-      data[x].id = data[x]._id;
-    }
-    $scope.authorities = data;
-  });
-
   //Get the loads
   Loads.all().then(function(data) {
     for(var x=0;x<data.length;x++) {
@@ -92,15 +46,39 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
     $scope.loads = data;
   });
 
-  $scope.removeAuthority = function(index, authorityType) {
-    if(authorityType=="Council") {
-      $scope.data.councilAuthorities.splice(index,1);
-    } else if (authorityType=="Police") {
-      $scope.data.policeAuthorities.splice(index,1);
-    } else if(authorityType=="Other") {
-      $scope.data.otherAuthorities.splice(index,1);
-    } else {
-      alert('Error: Unable to determine the Authority Type.');
+  $scope.filterAuthorities = function(filter) {
+    var opts = {
+      name: "startswith|" + filter
+    };
+    return Authorities.query(opts);
+  };
+
+  $scope.authoritySelected = function($item, $model, $label) {
+    var type = $item.authorityType.toLowerCase();
+    var ar = $scope.data[type + "Authorities"];
+    var fnd = false;
+
+    // Check if we've already added this authority
+    for (var i=0; i < ar.length; i++) {
+      if (ar[i]._id == $item._id) {
+        fnd = true;
+        break;
+      }
+    }
+
+    if (!fnd) {
+      ar.push($item);
+    }
+
+    $scope.lookups.selectedAuthority = null;
+
+  };
+
+  $scope.removeAuthority = function(idx, type) {
+    var ar = $scope.data[type + "Authorities"];
+
+    if (!!type) {
+      ar.splice(idx, 1);
     }
   };
 

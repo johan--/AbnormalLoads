@@ -1,94 +1,48 @@
 <div class="form-horizontal">
-  <div class="panel panel-default">
-    <div class="panel-heading">Job Details</div>
-    <div class="panel-body">
-
+  <div class="row">
     <div class="panel panel-default">
       <div class="panel-heading">Authorities</div>
       <div class="panel-body">
 
-        <table class="col-xs-12">
-          <tr>
-            <td>
-              <label class="control-label">Councils:</label>
-            </td>
-          </tr>
-          <tr ng-repeat="a in data.councilAuthorities">
-            <td>
-              {{ a.name }}
-            </td>
-            <td>
-              <a ng-click="removeAuthority($index, 'Council')">Remove</a>
-            </td>
-          </tr>
-          <tr>
-            <td>
+        <label class="control-label">Police:</label>
+        <div class=authority-container>
+            <span class="label label-default" ng-show="data.policeAuthorities.length == 0">No authorities specified</span>
+            <span class="label label-info" ng-repeat="p in data.policeAuthorities">
+              {{ p.name }}
+              <span class="fa fa-times" ng-click="removeAuthority($index, 'police')"></span>
+            </span>
+        </div>
 
-              <gi-select2 options="councilAuthorities" selection="selectedCouncilAuthority" field="name" style="width: 100%"></gi-select2>
+        <label class="control-label">Councils:</label>
+        <div class=authority-container>
+            <span class="label label-default" ng-show="data.councilAuthorities.length == 0">No authorities specified</span>
+            <span class="label label-info" ng-repeat="c in data.councilAuthorities">
+              {{ c.name }}
+              <span class="fa fa-times" ng-click="removeAuthority($index, 'council')"></span>
+            </span>
+        </div>
 
-            </td>
-            <td>
-              <button class="btn btn-primary" ng-click="addAuthority(selectedCouncilAuthority)">Add Authority</button>
-            </td>
-          </tr>
-        </table>
+        <label class="control-label">Other:</label>
+        <div class=authority-container>
+            <span class="label label-default" ng-show="data.otherAuthorities.length == 0">No authorities specified</span>
+            <span class="label label-info" ng-repeat="o in data.otherAuthorities">
+              {{ o.name }}
+              <span class="fa fa-times" ng-click="removeAuthority($index, 'other')"></span>
+            </span>
+        </div>
 
-        <table class="col-xs-12">
-          <tr>
-            <td>
-              <label class="control-label">Police:</label>
-            </td>
-          </tr>
-          <tr ng-repeat="a in data.policeAuthorities">
-            <td>
-              {{ a.name }}
-            </td>
-            <td>
-              <a ng-click="removeAuthority($index, 'Police')">Remove</a>
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <gi-select2 options="policeAuthorities" selection="selectedPoliceAuthority" field="name" style="width: 100%"></gi-select2>
-
-            </td>
-            <td>
-              <button class="btn btn-primary" ng-click="addAuthority(selectedPoliceAuthority)">Add Authority</button>
-            </td>
-          </tr>
-        </table>
-
-        <table class="col-xs-12">
-          <tr>
-            <td>
-              <label class="control-label">Other:</label>
-            </td>
-          </tr>
-          <tr ng-repeat="a in data.otherAuthorities">
-            <td>
-              {{ a.name }}
-            </td>
-            <td>
-              <a ng-click="removeAuthority($index, 'Other')">Remove</a>
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <gi-select2 options="otherAuthorities" selection="selectedOtherAuthority" field="name" style="width: 100%"></gi-select2>
-
-            </td>
-            <td>
-              <button class="btn btn-primary" ng-click="addAuthority(selectedOtherAuthority)">Add Authority</button>
-            </td>
-          </tr>
-        </table>
-
+        <br />
+        <label class="form-label">Add authority:</label>
+        <input type="text" class="form-control" ng-model="lookups.selectedAuthority" placeholder="Type authority name" typeahead="a.name for a in filterAuthorities($viewValue)" typeahead-min-length="3" typeahead-editable="false" typeahead-loading="loading" typeahead-wait-ms="300" typeahead-on-select="authoritySelected($item, $model, $label)" />
       </div>
     </div>
+  </div>
 
       <div class="row">
+  <div class="panel panel-default">
+    <div class="panel-heading">Job Details</div>
+    <div class="panel-body">
+
 
         <div class="col-md-6">
           <label class="control-label">Haulier:</label>
