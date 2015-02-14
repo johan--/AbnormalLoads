@@ -168,7 +168,7 @@ module.exports = (grunt) ->
           'json2/json2.js'
           'requirejs-domready/domReady.js'
           'html5shiv/dist/html5shiv-printshiv.js'
-          'jquery/jquery.js'
+          'jquery/dist/jquery.js'
           'ng-file-upload/angular-file-upload.js'
           'ng-file-upload/angular-file-upload-html5-shim.js'
           'aws-sdk/dist/aws-sdk.js'
