@@ -4,11 +4,15 @@ module.exports = (dal) ->
     schemaDefinition:
       systemId: 'ObjectId'
       jobId: 'String'
-      haulier: { id: 'ObjectId', haulierName: 'String', address: 'String' }
+      #haulier: { id: 'ObjectId', haulierName: 'String', address: 'String' }
+      haulier:
+        type: 'ObjectId'
+        ref: 'Customer'
+      haulierName: 'String'
       councilAuthorities: ['Authority']
       policeAuthorities: ['Authority']
       otherAuthorities: ['Authority']
-      dateOfNotice: 'Date'
+      createdOn: 'Date'
       ref: 'String'
       dateFrom: 'Date'
       dateTo: 'Date'
@@ -16,7 +20,10 @@ module.exports = (dal) ->
       addressTo: 'String'
       route: 'String'
       vehicle: 'String'
-      load: { id: 'ObjectId', name: 'String' }
+      load:
+        type: 'ObjectId'
+        ref: 'Load'
+      loadName: 'String'
       numberOfLoads: 'Number'
       return: 'Boolean'
       reg: 'String'

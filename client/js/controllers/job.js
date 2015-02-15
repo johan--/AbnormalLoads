@@ -1,15 +1,15 @@
 angular.module("abnormalloads").controller("jobController", ["$location", "$scope", "$rootScope", "Loads", "Authorities", "Customers", "Jobs", "$routeParams", function($location, $scope, $rootScope, Loads, Authorities, Customers, Jobs, $routeParams) {
   //If the user hasn't filled in any fields yet, this will be null
   var _vatRate = 0;
-  $scope.data = {};
+  $scope.data = {
+    createdOn: new Date()
+  };
   $scope.lookups = {
+    customers: [],
     authorities: [],
     selectedAuthority: null
   };
-  //$scope.lookups.haulier = {};
-  //$scope.lookups.load = {};
 
-  //And so will this
   $scope.data.haulier = {};
   $scope.showDelete = false;
   $scope.showGenerateNotice = false;
@@ -22,20 +22,13 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
     $location.path("jobs/generatenotice/" + $scope.data._id);
   }
 
-  $scope.$watch('lookups.haulier', function() {
-    $scope.priceJob();
-  });
-
   Authorities.query().then(function(data) {
     $scope.lookups.authorities = data;
   });
 
   //Get the hauliers
   Customers.all().then(function(data) {
-    for(var x=0;x<data.length;x++) {
-      data[x].id = data[x]._id;
-    }
-    $scope.hauliers = data;
+    $scope.lookups.customers = data;
   });
 
   //Get the loads
@@ -53,6 +46,13 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
     return Authorities.query(opts);
   };
 
+  $scope.filterLoads = function(filter) {
+    var opts = {
+      name: "startswith|" + filter
+    };
+    return Loads.query(opts);
+  };
+
   $scope.authoritySelected = function($item, $model, $label) {
     var type = $item.authorityType.toLowerCase();
     var ar = $scope.data[type + "Authorities"];
@@ -66,7 +66,7 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
       }
     }
 
-    if (!fnd) {
+    if (true || !fnd) {
       ar.push($item);
     }
 
@@ -82,43 +82,14 @@ angular.module("abnormalloads").controller("jobController", ["$location", "$scop
     }
   };
 
-  $scope.addAuthority = function(model) {
-    if(model.authorityType=="Council") {
-      //Make sure it hasn't already been added
+  $scope.setHaulier = function($item) {
+    $scope.data.haulier = $item._id;
+    $scope.priceJob();
+  };
 
-      for(var x = 0;x<$scope.data.councilAuthorities.length;x++) {
-        if($scope.data.councilAuthorities[x]._id==model._id) {
-          alert('This authority has already been added');
-          return;
-        }
-      }
-
-      $scope.data.councilAuthorities.push(model);
-    } else if(model.authorityType=="Police") {
-
-      for(var x = 0;x<$scope.data.policeAuthorities.length;x++) {
-        if($scope.data.policeAuthorities[x]._id==model._id) {
-          alert('This authority has already been added.');
-          return;
-        }
-      }
-
-      $scope.data.policeAuthorities.push(model);
-
-    } else if(model.authorityType=="Other") {
-
-      for(var x = 0;x<$scope.data.otherAuthorities.length;x++) {
-        if($scope.data.otherAuthorities[x]._id==model._id) {
-          alert('This authority has already been added');
-          return;
-        }
-      }
-
-      $scope.data.otherAuthorities.push(model);
-
-    } else {
-      alert('Error: Unable to determine the Authority Type.');
-    }
+  $scope.setLoad = function($item) {
+    $scope.data.load = $item._id;
+    $scope.priceJob();
   };
 
   $scope.priceJob = function() {

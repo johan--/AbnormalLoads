@@ -135,7 +135,7 @@ body {
   margin: 0 auto -100px;
   /* Pad bottom by footer height */
   //padding: 0 0 100px;
-  padding: 50px;
+  padding: 20px;
 }
 
 /* Set the fixed height of the footer here */
@@ -211,15 +211,41 @@ hr {
   margin: 60px auto;
 }
 
-.ng-invalid {
-  border: 1px solid red;
+input, textarea {
+  &.ng-dirty {
+    &.ng-invalid {
+      background-color: #f2a3a3;
+    }
+  }
+
+  &.number {
+    text-align: right;
+  }
 }
+
 
 input[type=radio]  {
   margin-left: 10px !important;
 }
 
 .authority-container {
-  font-size: 12pt;
-  min-height: 22px;
+  overflow: hidden;
+  margin-bottom: 0;
+  padding-bottom: 1px;
+
+  .label {
+    margin-bottom: 1ex;
+    margin-right: 1ex;
+    float: left;
+    font-size: 14px;
+  }
+}
+
+.shift-right {
+  float: right;
+  font-weight: bold;
+}
+
+textarea.form-control {
+  min-height: 8em;
 }
